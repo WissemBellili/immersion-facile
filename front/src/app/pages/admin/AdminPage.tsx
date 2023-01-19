@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import React from "react";
 import { NavLink, TabLinks } from "react-design-system";
 import { ImmersionHeader } from "src/app/components/layout/ImmersionHeader";
@@ -91,21 +92,29 @@ export const AdminPage = ({
   return (
     <>
       <ImmersionHeader />
-      <div className="fr-container">
-        <div className="fr-mt-2w">
-          <TabLinks
-            navLinks={getNavLinks(currentTab)}
-            navWrapper={{
-              role: "navigation",
-              id: "menu-admin",
-              className: "fr-nav fr-nav--admin",
-              ariaLabel: "Menu admin",
-              style: {
-                marginBottom: "1.5rem",
-              },
-            }}
-          />
-          <div className="fr-tab-content">{tabsByName[currentTab]()}</div>
+      <div className={fr.cx("fr-container")}>
+        <div
+          className={fr.cx(
+            "fr-grid-row",
+            "fr-grid-row--center",
+            "fr-grid-row--gutters",
+          )}
+        >
+          <div className={fr.cx("fr-col-12", "fr-p-2w", "fr-mt-4w")}>
+            <TabLinks
+              navLinks={getNavLinks(currentTab)}
+              navWrapper={{
+                role: "navigation",
+                id: "menu-admin",
+                className: "fr-nav fr-nav--admin",
+                ariaLabel: "Menu admin",
+                style: {
+                  marginBottom: "1.5rem",
+                },
+              }}
+            />
+            <div>{tabsByName[currentTab]()}</div>
+          </div>
         </div>
       </div>
     </>
