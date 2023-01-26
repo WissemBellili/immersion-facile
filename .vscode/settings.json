@@ -3,20 +3,30 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
-  "terminal.integrated.scrollback": 100000,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
   "editor.stickyScroll.enabled": true,
   "editor.suggest.insertMode": "replace",
   "editor.accessibilitySupport": "off",
   "editor.renderWhitespace": "trailing",
   "editor.linkedEditing": true,
   "editor.acceptSuggestionOnCommitCharacter": false,
+  "emmet.triggerExpansionOnTab": true,
+  "git.enableSmartCommit": true,
+
+  // UI / type settings
+  // "editor.fontSize": 14,
+  // "editor.fontWeight": 500,
+  // "editor.fontFamily": "'Fira Code', monospace",
+  // "editor.fontLigatures": true,
+
+  // Below are settings that won't be applied as project settings, but can be added as users' settings
+  "terminal.integrated.scrollback": 100000,
+  "typescript.tsdk": "node_modules/typescript/lib",
   "files.autosave": "onFocusChange",
   "explorer.autoreveal": false,
   "explorer.confirmDragAndDrop": false,
