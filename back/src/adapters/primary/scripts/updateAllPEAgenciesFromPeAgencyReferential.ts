@@ -3,7 +3,7 @@ import { UpdateAllPeAgencies } from "../../../domain/convention/useCases/agencie
 import { noRateLimit } from "../../../domain/core/ports/RateLimiter";
 import { noRetries } from "../../../domain/core/ports/RetryStrategy";
 import {
-  createHttpOpenCageDataClient,
+  createHttpAddressClient,
   HttpAddressGateway,
   addressesTargets,
   AddressesTargets,
@@ -30,7 +30,7 @@ const updateAllPeAgenciesScript = async () => {
   );
 
   const adressAPI = new HttpAddressGateway(
-    createHttpOpenCageDataClient<AddressesTargets>(addressesTargets),
+    createHttpAddressClient<AddressesTargets>(addressesTargets),
     config.apiKeyOpenCageDataGeocoding,
     config.apiKeyOpenCageDataGeosearch,
   );

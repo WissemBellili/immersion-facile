@@ -4,7 +4,7 @@ import { UpdateEstablishmentsFromSireneApiScript } from "../../../domain/immersi
 import { createLogger } from "../../../utils/logger";
 import { PipelineStats } from "../../../utils/pipelineStats";
 import {
-  createHttpOpenCageDataClient,
+  createHttpAddressClient,
   HttpAddressGateway,
   addressesTargets,
   AddressesTargets,
@@ -55,7 +55,7 @@ const main = async () => {
   );
 
   const addressAPI = new HttpAddressGateway(
-    createHttpOpenCageDataClient<AddressesTargets>(addressesTargets),
+    createHttpAddressClient<AddressesTargets>(addressesTargets),
     config.apiKeyOpenCageDataGeocoding,
     config.apiKeyOpenCageDataGeosearch,
   );

@@ -11,7 +11,7 @@ import { DocumentGateway } from "../../../domain/generic/fileManagement/port/Doc
 import { InclusionConnectGateway } from "../../../domain/inclusionConnect/port/InclusionConnectGateway";
 import { createLogger } from "../../../utils/logger";
 import {
-  createHttpOpenCageDataClient,
+  createHttpAddressClient,
   HttpAddressGateway,
   AddressesTargets,
   addressesTargets,
@@ -237,7 +237,7 @@ const createAddressGateway = (config: AppConfig) =>
     IN_MEMORY: () => new InMemoryAddressGateway(),
     OPEN_CAGE_DATA: () =>
       new HttpAddressGateway(
-        createHttpOpenCageDataClient<AddressesTargets>(addressesTargets),
+        createHttpAddressClient<AddressesTargets>(addressesTargets),
         config.apiKeyOpenCageDataGeocoding,
         config.apiKeyOpenCageDataGeosearch,
       ),

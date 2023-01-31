@@ -18,7 +18,7 @@ import { createPgUow } from "../config/uowConfig";
 import { HttpsSireneGateway } from "../../secondary/sirene/HttpsSireneGateway";
 import { RealTimeGateway } from "../../secondary/core/TimeGateway/RealTimeGateway";
 import {
-  createHttpOpenCageDataClient,
+  createHttpAddressClient,
   HttpAddressGateway,
   addressesTargets,
   AddressesTargets,
@@ -50,7 +50,7 @@ const transformPastFormEstablishmentsIntoSearchableData = async (
   });
   const clientDestination = await poolDestination.connect();
   const addressAPI = new HttpAddressGateway(
-    createHttpOpenCageDataClient<AddressesTargets>(addressesTargets),
+    createHttpAddressClient<AddressesTargets>(addressesTargets),
     config.apiKeyOpenCageDataGeocoding,
     config.apiKeyOpenCageDataGeosearch,
   );

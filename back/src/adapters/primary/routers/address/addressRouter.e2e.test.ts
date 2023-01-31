@@ -1,12 +1,3 @@
-import {
-  departmentCodeFromPostcodeRoute,
-  departmentCodeFromPostcodeUrl,
-  lookupLocationRoute,
-  lookupLocationUrl,
-  LookupSearchResult,
-  lookupStreetAddressRoute,
-  lookupStreetAddressUrl,
-} from "shared";
 import { SuperTest, Test } from "supertest";
 import { buildTestApp } from "../../../../_testBuilders/buildTestApp";
 import { InMemoryAddressGateway } from "../../../secondary/addressGateway/InMemoryAddressGateway";
@@ -25,8 +16,8 @@ describe("addressRouter", () => {
     addressGateway = testAppAndDeps.gateways.addressApi;
   });
 
-  describe(`${lookupStreetAddressRoute} route`, () => {
-    it(`GET ${lookupStreetAddressUrl(query8bdduportLookup)}`, async () => {
+  describe(`/address/lookupStreetAddress route`, () => {
+    it(`GET lookup ${query8bdduportLookup}`, async () => {
       addressGateway.setAddressAndPosition(
         expected8bdduportAddressAndPositions,
       );
