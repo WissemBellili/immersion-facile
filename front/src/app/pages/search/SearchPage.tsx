@@ -27,12 +27,13 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { useStyles } from "tss-react/dsfr";
 import { AppellationAutocomplete } from "src/app/components/forms/autocomplete/AppellationAutocomplete";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-
+import { metaContents } from "src/app/contents/meta/metaContents";
 const radiusOptions = [1, 2, 5, 10, 20, 50, 100];
 const sortedByOptions: { value: SearchSortedBy; label: string }[] = [
   { value: "distance", label: "Par proximité" },
   { value: "date", label: "Par date de publication" },
 ];
+
 export const SearchPage = ({
   route,
 }: {
@@ -83,6 +84,11 @@ export const SearchPage = ({
         <PageHeader
           title="Je trouve une entreprise pour réaliser mon immersion professionnelle"
           theme="candidate"
+          breadcrumbProps={{
+            currentPageLabel:
+              metaContents[route.name]?.title || "Titre de page inconnu",
+            homeLinkProps: routes.home().link,
+          }}
         >
           <Formik<SearchPageParams>
             initialValues={formikValues}

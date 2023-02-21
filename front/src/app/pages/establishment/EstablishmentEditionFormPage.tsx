@@ -18,6 +18,7 @@ import { ApiDataContainer } from "../admin/ApiDataContainer";
 import { EstablishmentFormikForm } from "src/app/components/forms/establishment/EstablishmentFormikForm";
 import { useFormContents } from "src/app/hooks/formContents.hooks";
 import { formEstablishmentFieldsLabels } from "src/app/contents/forms/establishment/formEstablishment";
+import { metaContents } from "src/app/contents/meta/metaContents";
 
 export const EstablishmentEditionFormPage = ({
   route,
@@ -42,6 +43,11 @@ export const EstablishmentEditionFormPage = ({
             title="Éditer une entreprise référencée"
             centered
             theme="establishment"
+            breadcrumbProps={{
+              currentPageLabel:
+                metaContents[route.name]?.title || "Titre de page inconnu",
+              homeLinkProps: routes.home().link,
+            }}
           />
         }
       >

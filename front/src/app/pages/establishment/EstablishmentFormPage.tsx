@@ -4,6 +4,7 @@ import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout
 import { routes } from "src/app/routes/routes";
 import { Route } from "type-route";
 import { EstablishmentCreationForm } from "src/app/components/forms/establishment/EstablishmentCreationForm";
+import { metaContents } from "src/app/contents/meta/metaContents";
 
 export const EstablishmentFormPage = ({
   route,
@@ -18,6 +19,11 @@ export const EstablishmentFormPage = ({
           title="Référencer mon entreprise"
           centered
           theme="establishment"
+          breadcrumbProps={{
+            currentPageLabel:
+              metaContents[route.name]?.title || "Titre de page inconnu",
+            homeLinkProps: routes.home().link,
+          }}
         />
       }
     >

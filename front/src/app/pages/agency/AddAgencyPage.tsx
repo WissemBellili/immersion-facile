@@ -32,6 +32,8 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { metaContents } from "src/app/contents/meta/metaContents";
+import { routes, useRoute } from "src/app/routes/routes";
 
 export type CreateAgencyInitialValues = Omit<CreateAgencyDto, "kind"> & {
   kind: AgencyKind | "";
@@ -71,7 +73,7 @@ export const AddAgencyPage = () => {
     mode: "onTouched",
     defaultValues: initialValues(uuidV4()),
   });
-
+  const route = useRoute();
   const {
     handleSubmit,
     formState: { isSubmitting, errors, submitCount },
@@ -103,6 +105,12 @@ export const AddAgencyPage = () => {
             title="Ajout d'organisme encadrant les PMSMP"
             centered
             theme="agency"
+            breadcrumbProps={{
+              currentPageLabel: route.name
+                ? metaContents[route.name]?.title
+                : "Titre de page inconnu",
+              homeLinkProps: routes.home().link,
+            }}
           />
         }
       >
