@@ -66,12 +66,12 @@ export const getValidatedConventionFinalConfirmationParams = (
   agency: AgencyDto,
   convention: ConventionDto,
 ): EmailParamsByEmailType["VALIDATED_CONVENTION_FINAL_CONFIRMATION"] => {
-  const {
-    beneficiary,
-    establishmentRepresentative,
-    beneficiaryRepresentative,
-    beneficiaryCurrentEmployer,
-  } = convention.signatories;
+  const { beneficiary, beneficiaryRepresentative } = convention.signatories;
+
+  if (!convention.dateValidation)
+    throw new Error(
+      `The convention "${convention.id}" doesn't have validation date.`,
+    );
 
   return {
     internshipKind: convention.internshipKind,
@@ -80,18 +80,9 @@ export const getValidatedConventionFinalConfirmationParams = (
       dateEnd: convention.dateEnd,
       schedule: convention.schedule,
     }),
-    beneficiaryFirstName: beneficiary.firstName,
-    beneficiaryLastName: beneficiary.lastName,
-    beneficiaryBirthdate: beneficiary.birthdate,
-    beneficiaryCurrentEmployerName:
-      beneficiaryCurrentEmployer &&
-      `${beneficiaryCurrentEmployer.firstName} ${beneficiaryCurrentEmployer.lastName}`,
-    emergencyContact: beneficiary.emergencyContact,
-    emergencyContactPhone: beneficiary.emergencyContactPhone,
     dateStart: parseISO(convention.dateStart).toLocaleDateString("fr"),
     dateEnd: parseISO(convention.dateEnd).toLocaleDateString("fr"),
     establishmentTutorName: `${convention.establishmentTutor.firstName} ${convention.establishmentTutor.lastName}`,
-    establishmentRepresentativeName: `${establishmentRepresentative.firstName} ${establishmentRepresentative.lastName}`,
     scheduleText: prettyPrintSchedule(convention.schedule).split("\n"),
     businessName: convention.businessName,
     immersionAddress: convention.immersionAddress || "",
@@ -106,15 +97,14 @@ export const getValidatedConventionFinalConfirmationParams = (
     questionnaireUrl: agency.questionnaireUrl,
     signature: agency.signature,
     workConditions: convention.workConditions,
-    beneficiaryRepresentativeName: beneficiaryRepresentative
-      ? `${beneficiaryRepresentative.firstName} ${beneficiaryRepresentative.lastName}`
-      : "",
     agencyName: agency.name,
     emergencyContactInfos: displayEmergencyContactInfos({
       beneficiaryRepresentative,
       beneficiary,
     }),
     agencyLogoUrl: agency.logoUrl,
+    agencyValidationDate: convention.dateValidation,
+    signatories: convention.signatories,
   };
 };
 

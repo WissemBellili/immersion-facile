@@ -23,6 +23,11 @@ const createConventionStatusButton = (link: string): EmailButtonProps => ({
   target: "_blank",
 });
 
+const throwOnMissingSignDate = (signedAt: string | undefined): string => {
+  if (!signedAt) throw new Error("Signature date is missing.");
+  return signedAt;
+};
+
 // to add a new EmailType, or changes the params of one, edit first EmailParamsByEmailType and let types guide you
 export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
   AGENCY_WAS_ACTIVATED: {
@@ -186,16 +191,11 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
     niceName: "Convention finale validée",
     tags: ["envoi convention"],
     createEmailVariables: ({
-      beneficiaryFirstName,
-      beneficiaryLastName,
       dateStart,
       dateEnd,
       businessName,
       establishmentTutorName,
       signature,
-      beneficiaryRepresentativeName,
-      establishmentRepresentativeName,
-      beneficiaryCurrentEmployerName,
       immersionAddress,
       scheduleText,
       immersionActivities,
@@ -206,16 +206,14 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       individualProtection,
       agencyName,
       emergencyContactInfos,
-      beneficiaryBirthdate,
       internshipKind,
+      agencyValidationDate,
+      signatories,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       questionnaireUrl,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       totalHours,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      emergencyContact,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      emergencyContactPhone,
+
       agencyLogoUrl,
     }) => ({
       subject:
@@ -226,9 +224,11 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       content: `
       Bonne nouvelle ! 
 
-      La demande faite par ${beneficiaryFirstName} ${beneficiaryLastName} (né le ${
-        isStringDate(beneficiaryBirthdate)
-          ? toDisplayedDate(new Date(beneficiaryBirthdate))
+      La demande faite par ${signatories.beneficiary.firstName} ${
+        signatories.beneficiary.lastName
+      } (né le ${
+        isStringDate(signatories.beneficiary.birthdate)
+          ? toDisplayedDate(new Date(signatories.beneficiary.birthdate))
           : "Date invalide"
       }) pour réaliser une immersion du ${dateStart} au ${dateEnd}, au sein de ${businessName} et encadrée par ${establishmentTutorName} a été validée et la convention est bien enregistrée. 
       
@@ -251,7 +251,7 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
 
       ${
         emergencyContactInfos
-          ? `Si la situation l'impose, le contact d'urgence de ${beneficiaryFirstName} ${beneficiaryLastName} : ${emergencyContactInfos}`
+          ? `Si la situation l'impose, le contact d'urgence de ${signatories.beneficiary.firstName} ${signatories.beneficiary.lastName} : ${emergencyContactInfos}`
           : ""
       }      
       ${
@@ -265,10 +265,18 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
           : "Convention de mini stage",
       subContent: `Cette convention est établie entre :
       ${[
-        `${beneficiaryFirstName} ${beneficiaryLastName}`,
-        beneficiaryRepresentativeName,
-        beneficiaryCurrentEmployerName,
-        establishmentRepresentativeName,
+        `${signatories.beneficiary.firstName} ${signatories.beneficiary.lastName}`,
+        ...(signatories.beneficiaryRepresentative
+          ? [
+              `${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName}`,
+            ]
+          : []),
+        ...(signatories.beneficiaryCurrentEmployer
+          ? [
+              `${signatories.beneficiaryCurrentEmployer.firstName} ${signatories.beneficiaryCurrentEmployer.lastName}`,
+            ]
+          : []),
+        `${signatories.establishmentRepresentative.firstName} ${signatories.establishmentRepresentative.lastName} pour le compte de ${businessName}`,
         agencyName,
       ]
         .filter((str) => !!str)
@@ -310,7 +318,9 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       }
       
       
-      Encadrement : ${beneficiaryFirstName} ${beneficiaryLastName} sera encadré(e) par ${establishmentTutorName}.
+      Encadrement : ${signatories.beneficiary.firstName} ${
+        signatories.beneficiary.lastName
+      } sera encadré(e) par ${establishmentTutorName}.
 
       Dans le cadre de ${
         internshipKind === "immersion" ? "cette immersion" : "ce mini stage"
@@ -319,13 +329,53 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       ${sanitaryPrevention}.
       - un équipement de protection est fourni : ${individualProtection}.
       
-      ${beneficiaryFirstName} ${beneficiaryLastName}, ${beneficiaryRepresentativeName} et ${establishmentRepresentativeName} en signant cette convention, s'engagent à respecter les obligations réglementaires ${
+      ${signatories.beneficiary.firstName} ${signatories.beneficiary.lastName}${
+        signatories.beneficiaryRepresentative
+          ? `, ${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName}`
+          : ``
+      } et ${signatories.establishmentRepresentative.firstName} ${
+        signatories.establishmentRepresentative.lastName
+      } en signant cette convention, s'engagent à respecter les obligations réglementaires ${
         internshipKind === "immersion"
           ? "de la Période de Mise en Situation Professionnelle"
           : "du mini stage"
       }, rappelées ci-après.
       
-      ${signature}`,
+      ${signature}
+      Cette convention a été signée par :
+      ${[
+        `${signatories.beneficiary.firstName} ${
+          signatories.beneficiary.lastName
+        } le ${throwOnMissingSignDate(signatories.beneficiary.signedAt)}`,
+        ...(signatories.beneficiaryRepresentative
+          ? [
+              `${signatories.beneficiaryRepresentative.firstName} ${
+                signatories.beneficiaryRepresentative.lastName
+              } représentant légal du bénéficiaire le ${throwOnMissingSignDate(
+                signatories.beneficiaryRepresentative.signedAt,
+              )}`,
+            ]
+          : []),
+        ...(signatories.beneficiaryCurrentEmployer
+          ? [
+              `${signatories.beneficiaryCurrentEmployer.firstName} ${
+                signatories.beneficiaryCurrentEmployer.lastName
+              } représentant de l'entreprise employant actuellement le bénéficiaire le ${throwOnMissingSignDate(
+                signatories.beneficiaryCurrentEmployer.signedAt,
+              )}`,
+            ]
+          : []),
+        `${signatories.establishmentRepresentative.firstName} ${
+          signatories.establishmentRepresentative.lastName
+        } représentant de l'entreprise d'accueil ${businessName} le ${throwOnMissingSignDate(
+          signatories.establishmentRepresentative.signedAt,
+        )}`,
+        `${agencyName} le ${agencyValidationDate}`,
+      ]
+        .filter((str) => !!str)
+        .map((str) => `- ${str}`)
+        .join("\n")}`,
+
       legals: defaultConventionFinalLegals(internshipKind),
       agencyLogoUrl,
     }),

@@ -1,5 +1,5 @@
 import { AbsoluteUrl } from "../AbsoluteUrl";
-import { InternshipKind } from "../convention/convention.dto";
+import { InternshipKind, Signatories } from "../convention/convention.dto";
 import { AppellationDto } from "../romeAndAppellationDtos/romeAndAppellation.dto";
 
 export type EmailParamsByEmailType = {
@@ -42,16 +42,9 @@ export type EmailParamsByEmailType = {
   VALIDATED_CONVENTION_FINAL_CONFIRMATION: {
     internshipKind: InternshipKind;
     totalHours: number;
-    beneficiaryFirstName: string;
-    beneficiaryLastName: string;
-    emergencyContact?: string;
-    emergencyContactPhone?: string;
     dateStart: string;
     dateEnd: string;
     establishmentTutorName: string;
-    establishmentRepresentativeName: string;
-    beneficiaryRepresentativeName: string;
-    beneficiaryCurrentEmployerName?: string;
     scheduleText: string[];
     businessName: string;
     immersionAddress: string;
@@ -65,8 +58,9 @@ export type EmailParamsByEmailType = {
     workConditions?: string;
     agencyName: string;
     emergencyContactInfos: string;
-    beneficiaryBirthdate: string;
     agencyLogoUrl: AbsoluteUrl | undefined;
+    agencyValidationDate: string;
+    signatories: Signatories;
   };
   POLE_EMPLOI_ADVISOR_ON_CONVENTION_FULLY_SIGNED: {
     advisorFirstName: string;

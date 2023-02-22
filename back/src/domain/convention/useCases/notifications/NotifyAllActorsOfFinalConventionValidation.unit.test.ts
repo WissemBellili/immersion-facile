@@ -4,6 +4,7 @@ import {
   ConventionDto,
   ConventionDtoBuilder,
   displayEmergencyContactInfos,
+  expectPromiseToFailWithError,
   expectTypeToMatchAndEqual,
   prettyPrintSchedule,
   reasonableSchedule,
@@ -26,6 +27,7 @@ const establishmentTutorEmail = "boss@mail.com";
 const validConvention: ConventionDto = new ConventionDtoBuilder()
   .withEstablishmentTutorEmail(establishmentTutorEmail)
   .withEstablishmentRepresentativeEmail(establishmentTutorEmail)
+  .withDateValidation(new Date().toISOString())
   .build();
 
 const counsellorEmail = "counsellor@email.fr";
@@ -122,6 +124,7 @@ describe("NotifyAllActorsOfFinalApplicationValidation sends confirmation email t
 
     const conventionWithSpecificEstablishementEmail = new ConventionDtoBuilder()
       .withEstablishmentTutorEmail(establishmentTutorEmail)
+      .withDateValidation(new Date().toISOString())
       .build();
 
     await notifyAllActorsOfFinalConventionValidation.execute(
@@ -139,7 +142,7 @@ describe("NotifyAllActorsOfFinalApplicationValidation sends confirmation email t
       ],
       emailGw.getSentEmails(),
       agency,
-      validConvention,
+      conventionWithSpecificEstablishementEmail,
     );
   });
 
@@ -152,6 +155,7 @@ describe("NotifyAllActorsOfFinalApplicationValidation sends confirmation email t
         role: "beneficiary-representative",
         email: "beneficiary@representative.fr",
       })
+      .withDateValidation(new Date().toISOString())
       .build();
 
     const agency = new AgencyDtoBuilder(defaultAgency)
@@ -251,6 +255,33 @@ describe("NotifyAllActorsOfFinalApplicationValidation sends confirmation email t
       validConvention,
     );
   });
+  it("should failed if convention is not validated", async () => {
+    const notValidatedConvention = new ConventionDtoBuilder()
+      .withBeneficiaryRepresentative({
+        firstName: "Tom",
+        lastName: "Cruise",
+        phone: "0665454271",
+        role: "beneficiary-representative",
+        email: "beneficiary@representative.fr",
+      })
+      .withoutDateValidation()
+      .build();
+
+    const agency = new AgencyDtoBuilder(defaultAgency)
+      .withCounsellorEmails([counsellorEmail])
+      .build();
+
+    uow.agencyRepository.setAgencies([agency]);
+
+    await expectPromiseToFailWithError(
+      notifyAllActorsOfFinalConventionValidation.execute(
+        notValidatedConvention,
+      ),
+      new Error(
+        `The convention "${notValidatedConvention.id}" doesn't have validation date.`,
+      ),
+    );
+  });
 });
 
 describe("getValidatedApplicationFinalConfirmationParams", () => {
@@ -266,19 +297,17 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
       .withSanitaryPreventionDescription("sanitaryPreventionDescription")
       .withIndividualProtection(true)
       .withSchedule(reasonableSchedule)
+      .withDateValidation(new Date().toISOString())
       .build();
+
+    if (!convention.dateValidation)
+      throw new Error("Validation date is missing.");
 
     expectTypeToMatchAndEqual(
       getValidatedConventionFinalConfirmationParams(agency, convention),
       {
         internshipKind: convention.internshipKind,
         totalHours: 70,
-        beneficiaryFirstName: convention.signatories.beneficiary.firstName,
-        beneficiaryLastName: convention.signatories.beneficiary.lastName,
-        emergencyContact: convention.signatories.beneficiary.emergencyContact,
-        beneficiaryBirthdate: convention.signatories.beneficiary.birthdate,
-        emergencyContactPhone:
-          convention.signatories.beneficiary.emergencyContactPhone,
         dateStart: parseISO(convention.dateStart).toLocaleDateString("fr"),
         dateEnd: parseISO(convention.dateEnd).toLocaleDateString("fr"),
         establishmentTutorName: `${convention.establishmentTutor.firstName} ${convention.establishmentTutor.lastName}`,
@@ -289,18 +318,18 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
           convention.immersionAppellation.appellationLabel,
         immersionActivities: convention.immersionActivities,
         immersionSkills: convention.immersionSkills ?? "Non renseigné",
-        establishmentRepresentativeName: `${convention.signatories.establishmentRepresentative.firstName} ${convention.signatories.establishmentRepresentative.lastName}`,
         sanitaryPrevention: "sanitaryPreventionDescription",
         individualProtection: "oui",
         questionnaireUrl: agency.questionnaireUrl,
         signature: agency.signature,
         workConditions: convention.workConditions,
-        beneficiaryRepresentativeName: "",
         agencyName: agency.name,
         emergencyContactInfos: displayEmergencyContactInfos({
           ...convention.signatories,
         }),
         agencyLogoUrl: agency.logoUrl,
+        agencyValidationDate: convention.dateValidation,
+        signatories: convention.signatories,
       },
     );
   });
@@ -308,6 +337,7 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
   it("prints correct sanitaryPreventionMessage when missing", () => {
     const convention = new ConventionDtoBuilder()
       .withSanitaryPrevention(false)
+      .withDateValidation(new Date().toISOString())
       .build();
 
     const actualParms = getValidatedConventionFinalConfirmationParams(
@@ -321,6 +351,7 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
   it("prints correct individualProtection when missing", () => {
     const convention = new ConventionDtoBuilder()
       .withIndividualProtection(false)
+      .withDateValidation(new Date().toISOString())
       .build();
 
     const actualParms = getValidatedConventionFinalConfirmationParams(
@@ -345,19 +376,17 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
         email: "rep@rep.com",
         phone: "0011223344",
       })
+      .withDateValidation(new Date().toISOString())
       .build();
+
+    if (!convention.dateValidation)
+      throw new Error("Validation date is missing.");
 
     expectTypeToMatchAndEqual(
       getValidatedConventionFinalConfirmationParams(agency, convention),
       {
         internshipKind: convention.internshipKind,
         totalHours: 70,
-        beneficiaryFirstName: convention.signatories.beneficiary.firstName,
-        beneficiaryLastName: convention.signatories.beneficiary.lastName,
-        beneficiaryBirthdate: convention.signatories.beneficiary.birthdate,
-        emergencyContact: convention.signatories.beneficiary.emergencyContact,
-        emergencyContactPhone:
-          convention.signatories.beneficiary.emergencyContactPhone,
         dateStart: parseISO(convention.dateStart).toLocaleDateString("fr"),
         dateEnd: parseISO(convention.dateEnd).toLocaleDateString("fr"),
         establishmentTutorName: `${convention.establishmentTutor.firstName} ${convention.establishmentTutor.lastName}`,
@@ -368,20 +397,18 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
           convention.immersionAppellation.appellationLabel,
         immersionActivities: convention.immersionActivities,
         immersionSkills: convention.immersionSkills ?? "Non renseigné",
-        establishmentRepresentativeName: `${convention.signatories.establishmentRepresentative.firstName} ${convention.signatories.establishmentRepresentative.lastName}`,
         sanitaryPrevention: "sanitaryPreventionDescription",
         individualProtection: "oui",
         questionnaireUrl: agency.questionnaireUrl,
         signature: agency.signature,
         workConditions: convention.workConditions,
-        beneficiaryRepresentativeName: `${
-          convention.signatories.beneficiaryRepresentative!.firstName
-        } ${convention.signatories.beneficiaryRepresentative!.lastName}`,
         agencyName: agency.name,
         emergencyContactInfos: displayEmergencyContactInfos({
           ...convention.signatories,
         }),
         agencyLogoUrl: agency.logoUrl,
+        agencyValidationDate: convention.dateValidation,
+        signatories: convention.signatories,
       },
     );
   });

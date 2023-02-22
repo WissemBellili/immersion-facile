@@ -57,11 +57,12 @@ describe("SendingBlueHtmlEmailGateway unit", () => {
   it("should throw if no recipient is provided", async () => {
     const triggerSendEmail = () =>
       sibGateway.sendEmail({
-        type: "VALIDATED_CONVENTION_FINAL_CONFIRMATION",
+        type: "AGENCY_WAS_ACTIVATED",
         recipients: [],
         params: {
-          scheduleText: "",
-        } as any,
+          agencyName: "AGENCY_NAME",
+          agencyLogoUrl: "https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+        },
       });
 
     await expectPromiseToFailWithError(
@@ -72,11 +73,12 @@ describe("SendingBlueHtmlEmailGateway unit", () => {
 
   it("should not send email if recipient are not in white list", async () => {
     await sibGateway.sendEmail({
-      type: "VALIDATED_CONVENTION_FINAL_CONFIRMATION",
+      type: "AGENCY_WAS_ACTIVATED",
       recipients: ["i-am-not-allowed@mail.net"],
       params: {
-        scheduleText: "",
-      } as any,
+        agencyName: "AGENCY_NAME",
+        agencyLogoUrl: "https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+      },
     });
 
     expect(sentEmails).toHaveLength(0);
@@ -84,15 +86,16 @@ describe("SendingBlueHtmlEmailGateway unit", () => {
 
   it("should filter emails according to predicate", async () => {
     await sibGateway.sendEmail({
-      type: "VALIDATED_CONVENTION_FINAL_CONFIRMATION",
+      type: "AGENCY_WAS_ACTIVATED",
       recipients: [
         "beneficiary@gmail.com",
         "advisor@gmail.com",
         "i-am-not-allowed@mail.net",
       ],
       params: {
-        scheduleText: "",
-      } as any,
+        agencyName: "AGENCY_NAME",
+        agencyLogoUrl: "https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+      },
     });
 
     expect(sentEmails[0].to).toEqual([
