@@ -94,6 +94,7 @@ export const formEstablishmentFieldsLabels: FormEstablishmentFieldsLabels = {
   appellations: {
     label: "",
     id: "establishment-appellations",
+    required: true,
   },
   website: {
     label: "URL vers votre site internet",

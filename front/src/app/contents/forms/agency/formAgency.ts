@@ -49,7 +49,7 @@ export const formAgencyFieldsLabels: FormAgencyFieldsLabels = {
     id: "agency-position",
   },
   logoUrl: {
-    label: "Téléverser le logo de votre organisme",
+    label: "Téléverser le logo de votre organisme (optionnel)",
     id: "agency-logoUrl",
     description: "Cela permet de personnaliser les mails automatisés.",
   },
@@ -105,6 +105,7 @@ export const formAgencyFieldsLabels: FormAgencyFieldsLabels = {
   },
   stepsForValidation: {
     id: "steps-for-validation",
-    label: "Combien d'étapes de validation des immersions y a-t-il ? *",
+    label: "Combien d'étapes de validation des immersions y a-t-il ?",
+    required: true,
   },
 };

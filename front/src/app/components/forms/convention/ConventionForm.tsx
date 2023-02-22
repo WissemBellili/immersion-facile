@@ -27,6 +27,7 @@ import { toFormikValidationSchema } from "src/app/components/forms/commons/zodVa
 import { ConventionFormFields } from "src/app/components/forms/convention/ConventionFormFields";
 import { useMatomo } from "src/app/hooks/useMatomo";
 import { useStyles } from "tss-react/dsfr";
+import { fr } from "@codegouvfr/react-dsfr";
 
 const useClearConventionSubmitFeedbackOnUnmount = () => {
   const dispatch = useDispatch();
@@ -142,6 +143,11 @@ export const ConventionForm = ({
         small
         description={t.intro.conventionWelcomeNotification}
       />
+
+      <p className={fr.cx("fr-text--xs", "fr-mt-3w")}>
+        Sauf mention contraire "(optionnel)" dans le label, tout les champs sont
+        obligatoires.
+      </p>
 
       <Formik
         enableReinitialize={true}

@@ -32,6 +32,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { fr } from "@codegouvfr/react-dsfr";
 
 export type CreateAgencyInitialValues = Omit<CreateAgencyDto, "kind"> & {
   kind: AgencyKind | "";
@@ -108,6 +109,10 @@ export const AddAgencyPage = () => {
       >
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onFormValid)}>
+            <p className={fr.cx("fr-text--xs")}>
+              Sauf mention contraire "(optionnel)" dans le label, tout les
+              champs sont obligatoires.
+            </p>
             <AgencyFormCommonFields />
             <AgencyLogoUpload />
 

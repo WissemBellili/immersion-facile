@@ -39,7 +39,7 @@ export const SchedulePicker = ({
     <>
       <BoolRadioPicker
         name="schedule.isSimple"
-        label="Les horaires quotidiens sont-ils réguliers ? *"
+        label="Les horaires quotidiens sont-ils réguliers ?"
         description="Ex : (Non) chaque jour a des horaires bien spécifiques, (Oui) “Du lundi au vendredi de 8h00 à 17h00”"
         yesLabel="Oui"
         noLabel="Non, irréguliers"
@@ -49,8 +49,8 @@ export const SchedulePicker = ({
       />
       <p className={fr.cx("fr-h4", "fr-mt-4w")}>
         {field.value.isSimple
-          ? "Sélectionnez la période des jours *"
-          : "Sélectionnez les horaires de travail jour par jour *"}
+          ? "Sélectionnez la période des jours"
+          : "Sélectionnez les horaires de travail jour par jour"}
       </p>
       {scheduleErrors.map((value, index) => (
         <div

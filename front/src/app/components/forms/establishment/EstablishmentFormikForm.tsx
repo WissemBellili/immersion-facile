@@ -100,6 +100,10 @@ export const EstablishmentFormikForm = ({
             plusieurs établissements, il convient de renseigner un formulaire
             pour chaque établissement (Siret différent).
           </p>
+          <p className={fr.cx("fr-text--xs")}>
+            Sauf mention contraire "(optionnel)" dans le label, tout les champs
+            sont obligatoires.
+          </p>
           <Form>
             <h2 className={fr.cx("fr-text--lead", "fr-mb-2w")}>
               Votre établissement
