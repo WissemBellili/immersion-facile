@@ -272,6 +272,7 @@ export const defaultEmailValueByEmailKind: {
         phone: "0665454271",
         role: "beneficiary-representative",
         email: "beneficiary@representative.fr",
+        signedAt: new Date("2021-01-04").toISOString(),
       },
       beneficiaryCurrentEmployer: {
         businessName: "boss",
@@ -282,6 +283,7 @@ export const defaultEmailValueByEmailKind: {
         lastName: "Potter",
         job: "Magician",
         businessSiret: "01234567891234",
+        signedAt: new Date("2021-01-04").toISOString(),
       },
     },
     agencyValidationDate: new Date().toISOString(),
