@@ -5,12 +5,13 @@ import {
   cciCustomHtmlHeader,
 } from "html-templates/src/components/email";
 import { keys } from "ramda";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { DsfrTitle, ImmersionTextField, Select } from "react-design-system";
 import {
   immersionFacileContactEmail,
   internshipKinds,
   templatesByName,
+  ValueOf,
 } from "shared";
 import { useStyles } from "tss-react/dsfr";
 
@@ -19,35 +20,33 @@ const defaultEmailPreviewUrl =
 
 type TemplateByName = typeof templatesByName;
 type TemplateName = keyof TemplateByName;
+type TemplateNameWithVariables = {
+  name: TemplateName;
+  variables: ValueOf<typeof defaultEmailValueByEmailKind>;
+};
+
+const defaultTemplateName: TemplateName = "AGENCY_WAS_ACTIVATED";
 
 export const EmailPreviewTab = () => {
   const { cx } = useStyles();
 
-  const [currentTemplate, setCurrentTemplate] = useState<TemplateName>(
-    "AGENCY_WAS_ACTIVATED",
-  );
-
-  const defaultEmailVariableForTemplate =
-    defaultEmailValueByEmailKind[currentTemplate];
-  const [emailVariables, setEmailVariables] = useState(
-    defaultEmailVariableForTemplate,
-  );
-
-  useEffect(() => {
-    setEmailVariables(defaultEmailVariableForTemplate);
-  }, [currentTemplate]);
+  const [currentTemplate, setCurrentTemplate] =
+    useState<TemplateNameWithVariables>({
+      name: defaultTemplateName,
+      variables: defaultEmailValueByEmailKind[defaultTemplateName],
+    });
 
   const fakeContent = configureGenerateHtmlFromTemplate(
     templatesByName,
     { contactEmail: immersionFacileContactEmail },
-    "internshipKind" in emailVariables &&
-      emailVariables.internshipKind === "mini-stage-cci"
+    "internshipKind" in currentTemplate.variables &&
+      currentTemplate.variables.internshipKind === "mini-stage-cci"
       ? {
           header: cciCustomHtmlHeader,
           footer: cciCustomHtmlFooter,
         }
       : { footer: undefined, header: undefined },
-  )(currentTemplate, emailVariables, {
+  )(currentTemplate.name, currentTemplate.variables, {
     skipHead: true,
   });
 
@@ -65,9 +64,14 @@ export const EmailPreviewTab = () => {
                 className={fr.cx("fr-select")}
                 id="selectTemplateName"
                 name="templateName"
-                onChange={(event) =>
-                  setCurrentTemplate(event.currentTarget.value as TemplateName)
-                }
+                onChange={(event) => {
+                  const templateName = event.currentTarget
+                    .value as TemplateName;
+                  return setCurrentTemplate({
+                    name: templateName,
+                    variables: defaultEmailValueByEmailKind[templateName],
+                  });
+                }}
               >
                 {keys(templatesByName).map((templateName) => (
                   <option key={templateName} value={templateName}>
@@ -99,21 +103,24 @@ export const EmailPreviewTab = () => {
 
             <h6 className={fr.cx("fr-mt-4w")}>Données de prévisualisation</h6>
             <ul>
-              {Object.keys(emailVariables)
+              {Object.keys(currentTemplate.variables)
                 .sort()
                 .map((variableName) => (
                   <li key={variableName}>
                     <EmailVariableField
                       variableName={variableName}
                       variableValue={
-                        emailVariables[
-                          variableName as keyof typeof emailVariables
+                        currentTemplate.variables[
+                          variableName as keyof typeof currentTemplate.variables
                         ]
                       }
                       onChange={(value) =>
-                        setEmailVariables({
-                          ...emailVariables,
-                          [variableName]: value,
+                        setCurrentTemplate({
+                          ...currentTemplate,
+                          variables: {
+                            ...currentTemplate.variables,
+                            [variableName]: value,
+                          },
                         })
                       }
                     />
@@ -124,7 +131,7 @@ export const EmailPreviewTab = () => {
             {fakeContent.attachment ? (
               <ul>
                 {fakeContent.attachment.map((att) => (
-                  <li>
+                  <li key={att.url}>
                     <a target={"_blank"} href={att.url}>
                       {att.url}
                     </a>

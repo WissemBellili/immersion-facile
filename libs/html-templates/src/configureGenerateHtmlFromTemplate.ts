@@ -45,6 +45,7 @@ export const configureGenerateHtmlFromTemplate =
     attachment?: { url: string }[];
   } => {
     const { createEmailVariables, tags } = templateByName[templateName];
+
     const {
       subject,
       agencyLogoUrl,
