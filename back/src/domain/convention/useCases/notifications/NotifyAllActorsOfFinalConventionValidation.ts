@@ -105,6 +105,9 @@ export const getValidatedConventionFinalConfirmationParams = (
     agencyLogoUrl: agency.logoUrl,
     agencyValidationDate: convention.dateValidation,
     signatories: convention.signatories,
+    agencyAddress: agency.address,
+    immersionObjective: convention.immersionObjective,
+    establishmentSiret: convention.siret,
   };
 };
 

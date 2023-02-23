@@ -330,6 +330,9 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
         agencyLogoUrl: agency.logoUrl,
         agencyValidationDate: convention.dateValidation,
         signatories: convention.signatories,
+        agencyAddress: agency.address,
+        immersionObjective: convention.immersionObjective,
+        establishmentSiret: convention.siret,
       },
     );
   });
@@ -409,6 +412,9 @@ describe("getValidatedApplicationFinalConfirmationParams", () => {
         agencyLogoUrl: agency.logoUrl,
         agencyValidationDate: convention.dateValidation,
         signatories: convention.signatories,
+        agencyAddress: agency.address,
+        immersionObjective: convention.immersionObjective,
+        establishmentSiret: convention.siret,
       },
     );
   });

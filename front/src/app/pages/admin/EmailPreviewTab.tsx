@@ -25,7 +25,8 @@ type TemplateNameWithVariables = {
   variables: ValueOf<typeof defaultEmailValueByEmailKind>;
 };
 
-const defaultTemplateName: TemplateName = "AGENCY_WAS_ACTIVATED";
+const defaultTemplateName: TemplateName =
+  "VALIDATED_CONVENTION_FINAL_CONFIRMATION";
 
 export const EmailPreviewTab = () => {
   const { cx } = useStyles();
@@ -294,6 +295,14 @@ export const defaultEmailValueByEmailKind: {
       },
     },
     agencyValidationDate: new Date().toISOString(),
+    agencyAddress: {
+      streetNumberAndAddress: "20 rue des bouchers",
+      postcode: "93430",
+      departmentCode: "93",
+      city: "Villetaneuse",
+    },
+    immersionObjective: "Confirmer un projet professionnel",
+    establishmentSiret: "34493368400021",
   },
   POLE_EMPLOI_ADVISOR_ON_CONVENTION_FULLY_SIGNED: {
     advisorFirstName: "ADVISOR_FIRST_NAME",

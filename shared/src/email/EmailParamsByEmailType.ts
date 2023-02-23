@@ -1,6 +1,12 @@
 import { AbsoluteUrl } from "../AbsoluteUrl";
-import { InternshipKind, Signatories } from "../convention/convention.dto";
+import { AddressDto } from "../address/address.dto";
+import {
+  ImmersionObjective,
+  InternshipKind,
+  Signatories,
+} from "../convention/convention.dto";
 import { AppellationDto } from "../romeAndAppellationDtos/romeAndAppellation.dto";
+import { SiretDto } from "../siret/siret";
 
 export type EmailParamsByEmailType = {
   SIGNEE_HAS_SIGNED_CONVENTION: {
@@ -61,6 +67,9 @@ export type EmailParamsByEmailType = {
     agencyLogoUrl: AbsoluteUrl | undefined;
     agencyValidationDate: string;
     signatories: Signatories;
+    agencyAddress: AddressDto;
+    immersionObjective: ImmersionObjective;
+    establishmentSiret: SiretDto;
   };
   POLE_EMPLOI_ADVISOR_ON_CONVENTION_FULLY_SIGNED: {
     advisorFirstName: string;

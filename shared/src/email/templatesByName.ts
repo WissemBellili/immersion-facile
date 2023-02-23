@@ -209,6 +209,9 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       internshipKind,
       agencyValidationDate,
       signatories,
+      agencyAddress,
+      immersionObjective,
+      establishmentSiret,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       questionnaireUrl,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -256,16 +259,23 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       }      
       ${
         internshipKind === "immersion"
-          ? "Vous trouverez ci-dessous la convention d'immersion professionnelle:"
+          ? "Vous trouverez ci-dessous la convention relative à la mise en œuvre d’une période de mise en situation en milieu professionnel:"
           : "Vous trouverez ci-dessous la convention de mini stage :"
       }`,
       highlight:
         internshipKind === "immersion"
-          ? "Convention d'immersion professionnelle"
+          ? "Convention relative à la mise en œuvre d’une période de mise en situation en milieu professionnel"
           : "Convention de mini stage",
-      subContent: `Cette convention est établie entre :
+      subContent: ` <strong>Cette convention est établie entre :</strong>
+
       ${[
-        `${signatories.beneficiary.firstName} ${signatories.beneficiary.lastName}`,
+        `${signatories.beneficiary.firstName} ${
+          signatories.beneficiary.lastName
+        } né le ${
+          isStringDate(signatories.beneficiary.birthdate)
+            ? toDisplayedDate(new Date(signatories.beneficiary.birthdate))
+            : "Date invalide"
+        } (tel: ${signatories.beneficiary.phone})`,
         ...(signatories.beneficiaryRepresentative
           ? [
               `${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName}`,
@@ -277,28 +287,15 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
             ]
           : []),
         `${signatories.establishmentRepresentative.firstName} ${signatories.establishmentRepresentative.lastName} pour le compte de ${businessName}`,
-        agencyName,
+        `${agencyName} (${agencyAddress.streetNumberAndAddress}, ${agencyAddress.postcode} ${agencyAddress.city})`,
       ]
         .filter((str) => !!str)
         .map((str) => `- ${str}`)
         .join("\n")}
       
-      
-      Toutes ces parties ont signé cette convention par le moyen d'une signature électronique, dans le cadre d'une téléprocédure créée par l'Etat. 
-      
-      ${
-        internshipKind === "immersion" ? "Cette immersion" : "Ce mini stage"
-      } se déroulera au sein de ${businessName}, à l'adresse suivante ${immersionAddress}.
-      
-      ${
-        internshipKind === "immersion" ? "L'immersion" : "Le mini stage"
-      } se déroulera du ${dateStart} au ${dateEnd}. 
-      
-      Les horaires ${
-        internshipKind === "immersion" ? "de l'immersion" : "du mini stage"
-      } seront :
-      ${scheduleText}       
-      
+      <strong>Dispositions relatives aux conditions de réalisation de l’immersion</strong>
+
+      <strong>1. Activités confiées</strong>
       ${
         internshipKind === "immersion" ? "L'immersion" : "Le mini stage"
       } aura pour objectif de découvrir les activités nécessaires en lien avec le métier de ${immersionAppellationLabel}.
@@ -306,21 +303,25 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       Ces activités sont : ${immersionActivities}
       
       Les compétences et savoir-être observés sont : ${immersionSkills}.
-      
+
+      L’objet de l’immersion est : ${immersionObjective}
+
+      <strong>2. Conditions de mise en œuvre et d’évaluation</strong>
+
+      Lieu et dates :
+
       ${
         internshipKind === "immersion" ? "Cette immersion" : "Ce mini stage"
-      } se déroulera dans les conditions réelles d'exercice de ce métier. 
-      
+      } se déroulera au sein de ${businessName} (Siret n° : <a href=https://annuaire-entreprises.data.gouv.fr/etablissement/${establishmentSiret}>${establishmentSiret}</a>, à l'adresse suivante ${immersionAddress}.
       ${
-        workConditions
-          ? `Les conditions particulières d'exercice du métier sont : ${workConditions}`
-          : ""
-      }
+        internshipKind === "immersion" ? "L'immersion" : "Le mini stage"
+      } se déroulera du ${dateStart} au ${dateEnd}. 
+      Les horaires ${
+        internshipKind === "immersion" ? "de l'immersion" : "du mini stage"
+      } seront :
+      ${scheduleText} 
       
-      
-      Encadrement : ${signatories.beneficiary.firstName} ${
-        signatories.beneficiary.lastName
-      } sera encadré(e) par ${establishmentTutorName}.
+      Conditions particulières d’exercice de l’activité observée :
 
       Dans le cadre de ${
         internshipKind === "immersion" ? "cette immersion" : "ce mini stage"
@@ -328,7 +329,19 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       - des mesures de prévention sanitaire sont prévues :      
       ${sanitaryPrevention}.
       - un équipement de protection est fourni : ${individualProtection}.
+      ${
+        workConditions
+          ? `Les conditions particulières d'exercice du métier sont : ${workConditions}`
+          : ""
+      }
       
+      Encadrement : 
+      
+      ${signatories.beneficiary.firstName} ${
+        signatories.beneficiary.lastName
+      } sera encadré(e) par ${establishmentTutorName}.
+
+
       ${signatories.beneficiary.firstName} ${signatories.beneficiary.lastName}${
         signatories.beneficiaryRepresentative
           ? `, ${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName}`
