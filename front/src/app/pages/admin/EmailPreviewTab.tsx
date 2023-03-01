@@ -25,8 +25,7 @@ type TemplateNameWithVariables = {
   variables: ValueOf<typeof defaultEmailValueByEmailKind>;
 };
 
-const defaultTemplateName: TemplateName =
-  "VALIDATED_CONVENTION_FINAL_CONFIRMATION";
+const defaultTemplateName: TemplateName = "AGENCY_WAS_ACTIVATED";
 
 export const EmailPreviewTab = () => {
   const { cx } = useStyles();

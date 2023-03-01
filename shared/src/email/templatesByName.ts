@@ -275,18 +275,18 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
           isStringDate(signatories.beneficiary.birthdate)
             ? toDisplayedDate(new Date(signatories.beneficiary.birthdate))
             : "Date invalide"
-        } (tel: ${signatories.beneficiary.phone})`,
+        } en tant que bénéficiaire (tel: ${signatories.beneficiary.phone})`,
         ...(signatories.beneficiaryRepresentative
           ? [
-              `${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName}`,
+              `${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName} en tant que représentant légal du bénéficiaire (tel: ${signatories.beneficiaryRepresentative.phone})`,
             ]
           : []),
         ...(signatories.beneficiaryCurrentEmployer
           ? [
-              `${signatories.beneficiaryCurrentEmployer.firstName} ${signatories.beneficiaryCurrentEmployer.lastName}`,
+              `${signatories.beneficiaryCurrentEmployer.firstName} ${signatories.beneficiaryCurrentEmployer.lastName} en tant qu'employeur actuel du bénéficiaire (tel: ${signatories.beneficiaryCurrentEmployer.phone})`,
             ]
           : []),
-        `${signatories.establishmentRepresentative.firstName} ${signatories.establishmentRepresentative.lastName} pour le compte de ${businessName}`,
+        `${signatories.establishmentRepresentative.firstName} ${signatories.establishmentRepresentative.lastName} en tant que représentant de l'entreprise ${businessName} (tel: ${signatories.establishmentRepresentative.phone})`,
         `${agencyName} (${agencyAddress.streetNumberAndAddress}, ${agencyAddress.postcode} ${agencyAddress.city})`,
       ]
         .filter((str) => !!str)
@@ -359,13 +359,19 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       ${[
         `${signatories.beneficiary.firstName} ${
           signatories.beneficiary.lastName
-        } le ${throwOnMissingSignDate(signatories.beneficiary.signedAt)}`,
+        } le ${toDisplayedDate(
+          new Date(throwOnMissingSignDate(signatories.beneficiary.signedAt)),
+        )}`,
         ...(signatories.beneficiaryRepresentative
           ? [
               `${signatories.beneficiaryRepresentative.firstName} ${
                 signatories.beneficiaryRepresentative.lastName
-              } représentant légal du bénéficiaire le ${throwOnMissingSignDate(
-                signatories.beneficiaryRepresentative.signedAt,
+              } représentant légal du bénéficiaire le ${toDisplayedDate(
+                new Date(
+                  throwOnMissingSignDate(
+                    signatories.beneficiaryRepresentative.signedAt,
+                  ),
+                ),
               )}`,
             ]
           : []),
@@ -373,17 +379,25 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
           ? [
               `${signatories.beneficiaryCurrentEmployer.firstName} ${
                 signatories.beneficiaryCurrentEmployer.lastName
-              } représentant de l'entreprise employant actuellement le bénéficiaire le ${throwOnMissingSignDate(
-                signatories.beneficiaryCurrentEmployer.signedAt,
+              } représentant de l'entreprise employant actuellement le bénéficiaire le ${toDisplayedDate(
+                new Date(
+                  throwOnMissingSignDate(
+                    signatories.beneficiaryCurrentEmployer.signedAt,
+                  ),
+                ),
               )}`,
             ]
           : []),
         `${signatories.establishmentRepresentative.firstName} ${
           signatories.establishmentRepresentative.lastName
-        } représentant de l'entreprise d'accueil ${businessName} le ${throwOnMissingSignDate(
-          signatories.establishmentRepresentative.signedAt,
+        } représentant de l'entreprise d'accueil ${businessName} le ${toDisplayedDate(
+          new Date(
+            throwOnMissingSignDate(
+              signatories.establishmentRepresentative.signedAt,
+            ),
+          ),
         )}`,
-        `${agencyName} le ${agencyValidationDate}`,
+        `${agencyName} le ${toDisplayedDate(new Date(agencyValidationDate))}`,
       ]
         .filter((str) => !!str)
         .map((str) => `- ${str}`)
