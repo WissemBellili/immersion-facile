@@ -239,12 +239,6 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
         internshipKind === "immersion" ? "L'immersion" : "Le mini stage"
       } peut donc démarrer aux dates convenues*.       
       
-      ${
-        internshipKind === "immersion"
-          ? `À la fin de l'immersion, nous vous remercions de compléter la fiche d'évaluation de l'immersion <a href="https://immersion.cellar-c2.services.clever-cloud.com/bilan-immersion-professionnelle-inscriptible.pdf">à télécharger ici</a>, et de l'envoyer au conseiller qui a signé la convention (Pôle Emploi, Mission Locale…). Cette évaluation doit être complétée par le tuteur, si possible en présence du bénéficiaire de l'immersion.`
-          : `À la fin du mini stage, nous vous remercions de compléter la fiche d'évaluation du mini stage <a href="??????????">NOTICE BILAN A FOURNIR</a>, et de l'envoyer au conseiller de la Chambre de Commerce et d'Instrustrie - CCI qui a signé la convention. Cette évaluation doit être complétée par le tuteur, si possible en présence du bénéficiaire du mini stage.`
-      }
-      
       En cas de difficulté, prévenez au plus vite votre ${
         internshipKind === "immersion"
           ? "conseiller"
@@ -275,18 +269,18 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
           isStringDate(signatories.beneficiary.birthdate)
             ? toDisplayedDate(new Date(signatories.beneficiary.birthdate))
             : "Date invalide"
-        } en tant que bénéficiaire (tel: ${signatories.beneficiary.phone})`,
+        } en qualité de bénéficiaire (tel: ${signatories.beneficiary.phone})`,
         ...(signatories.beneficiaryRepresentative
           ? [
-              `${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName} en tant que représentant légal du bénéficiaire (tel: ${signatories.beneficiaryRepresentative.phone})`,
+              `${signatories.beneficiaryRepresentative.firstName} ${signatories.beneficiaryRepresentative.lastName} en qualité de représentant légal du bénéficiaire (tel: ${signatories.beneficiaryRepresentative.phone})`,
             ]
           : []),
         ...(signatories.beneficiaryCurrentEmployer
           ? [
-              `${signatories.beneficiaryCurrentEmployer.firstName} ${signatories.beneficiaryCurrentEmployer.lastName} en tant qu'employeur actuel du bénéficiaire (tel: ${signatories.beneficiaryCurrentEmployer.phone})`,
+              `${signatories.beneficiaryCurrentEmployer.firstName} ${signatories.beneficiaryCurrentEmployer.lastName} en qualité de représentant de l'entreprise employant actuellement le bénéficiaire (tel: ${signatories.beneficiaryCurrentEmployer.phone})`,
             ]
           : []),
-        `${signatories.establishmentRepresentative.firstName} ${signatories.establishmentRepresentative.lastName} en tant que représentant de l'entreprise ${businessName} (tel: ${signatories.establishmentRepresentative.phone})`,
+        `${signatories.establishmentRepresentative.firstName} ${signatories.establishmentRepresentative.lastName} en qualité de représentant de l'entreprise ${businessName} (tel: ${signatories.establishmentRepresentative.phone})`,
         `${agencyName} (${agencyAddress.streetNumberAndAddress}, ${agencyAddress.postcode} ${agencyAddress.city})`,
       ]
         .filter((str) => !!str)
@@ -321,7 +315,7 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       } seront :
       ${scheduleText} 
       
-      Conditions particulières d’exercice de l’activité observée :
+      Conditions d'observation de l’activité :
 
       Dans le cadre de ${
         internshipKind === "immersion" ? "cette immersion" : "ce mini stage"
@@ -355,18 +349,20 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       }, rappelées ci-après.
       
       ${signature}
-      Cette convention a été signée par :
+
+      Toutes les parties ci-dessous ont signé cette convention par le moyen d'une signature électronique :
+      
       ${[
         `${signatories.beneficiary.firstName} ${
           signatories.beneficiary.lastName
-        } le ${toDisplayedDate(
+        } en qualité de bénéficiaire le ${toDisplayedDate(
           new Date(throwOnMissingSignDate(signatories.beneficiary.signedAt)),
         )}`,
         ...(signatories.beneficiaryRepresentative
           ? [
               `${signatories.beneficiaryRepresentative.firstName} ${
                 signatories.beneficiaryRepresentative.lastName
-              } représentant légal du bénéficiaire le ${toDisplayedDate(
+              } en qualité de représentant légal du bénéficiaire le ${toDisplayedDate(
                 new Date(
                   throwOnMissingSignDate(
                     signatories.beneficiaryRepresentative.signedAt,
@@ -379,7 +375,7 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
           ? [
               `${signatories.beneficiaryCurrentEmployer.firstName} ${
                 signatories.beneficiaryCurrentEmployer.lastName
-              } représentant de l'entreprise employant actuellement le bénéficiaire le ${toDisplayedDate(
+              } en qualité de représentant de l'entreprise employant actuellement le bénéficiaire le ${toDisplayedDate(
                 new Date(
                   throwOnMissingSignDate(
                     signatories.beneficiaryCurrentEmployer.signedAt,
@@ -390,7 +386,7 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
           : []),
         `${signatories.establishmentRepresentative.firstName} ${
           signatories.establishmentRepresentative.lastName
-        } représentant de l'entreprise d'accueil ${businessName} le ${toDisplayedDate(
+        } en qualité de représentant de l'entreprise d'accueil ${businessName} le ${toDisplayedDate(
           new Date(
             throwOnMissingSignDate(
               signatories.establishmentRepresentative.signedAt,
@@ -401,7 +397,13 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       ]
         .filter((str) => !!str)
         .map((str) => `- ${str}`)
-        .join("\n")}`,
+        .join("\n")} 
+        
+        ${
+          internshipKind === "immersion"
+            ? `À la fin de l'immersion, nous vous remercions de compléter la fiche d'évaluation de l'immersion <a href="https://immersion.cellar-c2.services.clever-cloud.com/bilan-immersion-professionnelle-inscriptible.pdf" target="_blank">à télécharger ici</a>, et de l'envoyer au conseiller qui a signé la convention (Pôle Emploi, Mission Locale…). Cette évaluation doit être complétée par le tuteur, si possible en présence du bénéficiaire de l'immersion.`
+            : `À la fin du mini stage, nous vous remercions de compléter la fiche d'évaluation du mini stage <a href="https://immersion.cellar-c2.services.clever-cloud.com/CCI_MiniStage_Bilan.pdf" target="_blank">à télécharger ici</a>, et de l'envoyer au conseiller de la Chambre de Commerce et d'Instrustrie - CCI qui a signé la convention. Cette évaluation doit être complétée par le tuteur, si possible en présence du bénéficiaire du mini stage.`
+        }`,
 
       legals: defaultConventionFinalLegals(internshipKind),
       agencyLogoUrl,
