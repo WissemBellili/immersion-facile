@@ -15,6 +15,7 @@ import {
   DepartmentCode,
   departmentNameToDepartmentCode,
   featureToAddressDto,
+  GeoJsonFeature,
   GeoPositionDto,
   LookupSearchResult,
   lookupSearchResultsSchema,
@@ -133,7 +134,9 @@ export class HttpAddressGateway implements AddressGateway {
         q: postCode,
       },
     });
-    const feature = toFeatureCollection(response.responseBody).features.at(0);
+    const feature = toFeatureCollection(response.responseBody)
+      .features.filter(keepOnlyFeatureWithPostcode)
+      .at(0);
     if (!feature) {
       throw new Error(`No feature on Address API for postCode ${postCode}`);
     }
@@ -154,7 +157,9 @@ export class HttpAddressGateway implements AddressGateway {
 
     const feature = (
       response.responseBody as OpenCageDataFeatureCollection
-    ).features.at(0);
+    ).features
+      .filter(keepOnlyOpencageFeaturesWithPostCode)
+      .at(0);
     if (!feature) throw new Error(missingFeatureForPostcode(postCode));
     const department = getDepartmentFromAliases(feature.properties.components);
     if (!department) return this.getDepartmentCodeFromAddressAPI(postCode);
@@ -180,9 +185,9 @@ export class HttpAddressGateway implements AddressGateway {
       },
     });
 
-    const feature = (responseBody as OpenCageDataFeatureCollection).features.at(
-      0,
-    );
+    const feature = (responseBody as OpenCageDataFeatureCollection).features
+      .filter(keepOnlyOpencageFeaturesWithPostCode)
+      .at(0);
     return feature && this.featureToAddress(feature);
   }
   public async lookupStreetAddress(
@@ -204,6 +209,7 @@ export class HttpAddressGateway implements AddressGateway {
       });
 
       return (responseBody as OpenCageDataFeatureCollection).features
+        .filter(keepOnlyOpencageFeaturesWithPostCode)
         .map((feature) => this.toAddressAndPosition(feature))
         .filter((feature): feature is AddressAndPosition => !!feature);
     } finally {
@@ -398,3 +404,10 @@ const toLookupSearchResults = (
       lon: parseFloat(result.geometry.lng),
     },
   }));
+
+const keepOnlyFeatureWithPostcode = (feature: GeoJsonFeature) =>
+  !!feature?.properties?.postcode;
+
+const keepOnlyOpencageFeaturesWithPostCode = (
+  feature: GeoJSON.Feature<Point, OpenCageDataProperties>,
+) => !!feature?.properties?.components?.postcode;
