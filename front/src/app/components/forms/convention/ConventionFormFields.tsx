@@ -1,8 +1,12 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { useFormikContext } from "formik";
-import React, { useEffect } from "react";
-import { ErrorNotifications } from "react-design-system";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
+import { FormikErrors, useFormikContext } from "formik";
+import React, { useEffect } from "react";
+import {
+  ErrorNotifications,
+  FormSection,
+  FormSectionProps,
+} from "react-design-system";
 import { ConventionReadDto, Signatory, toDotNotation } from "shared";
 import { ConventionFrozenMessage } from "src/app/components/forms/convention/ConventionFrozenMessage";
 import { ConventionSignOnlyMessage } from "src/app/components/forms/convention/ConventionSignOnlyMessage";
@@ -25,6 +29,8 @@ import { ImmersionConditionFormSection } from "./sections/immersion-conditions/I
 
 type ConventionFieldsProps = {
   isFrozen?: boolean;
+  currentFormStep: number;
+  onCurrentFormStepChange: (step: number) => void;
   onModificationsRequired?: () => Promise<void>; //< called when the form is sent back for modifications in signature mode
 } & (
   | { isSignOnly: true; signatory: Signatory }
@@ -35,6 +41,8 @@ export const ConventionFormFields = ({
   isFrozen,
   isSignOnly: isSignatureMode,
   signatory,
+  currentFormStep,
+  onCurrentFormStepChange,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onModificationsRequired = async () => {},
 }: ConventionFieldsProps): JSX.Element => {
@@ -74,6 +82,20 @@ export const ConventionFormFields = ({
   const federatedIdentity =
     conventionValues.signatories.beneficiary.federatedIdentity;
 
+  const agencySectionFields: Array<keyof ConventionReadDto> = ["agencyId"];
+  const beneficiarySectionFields = [
+    "signatories.beneficiary.firstName",
+    "signatories.beneficiary.lastName",
+  ] as unknown as Array<keyof ConventionReadDto>;
+
+  const getFormSectionStatus = (
+    fields: Array<keyof ConventionReadDto>,
+    errors: FormikErrors<ConventionReadDto>,
+  ): FormSectionProps["status"] =>
+    fields.filter((field) => toDotNotation(errors)[field]).length > 0
+      ? "invalid"
+      : "valid";
+
   return (
     <>
       {isFrozen && !isSignatureMode && <ConventionFrozenMessage />}
@@ -85,29 +107,60 @@ export const ConventionFormFields = ({
         {...formContents["signatories.beneficiary.federatedIdentity"]}
       />
       {route.name !== "conventionCustomAgency" && (
-        <AgencyFormSection
-          internshipKind={conventionValues.internshipKind}
-          agencyId={conventionValues.agencyId}
-          enablePeConnectApi={enablePeConnectApi}
-          isFrozen={isFrozen}
-        />
+        <FormSection
+          label={t.agencySection.title}
+          expanded={currentFormStep === 0}
+          onExpandedChange={(expanded) =>
+            onCurrentFormStepChange(expanded ? 0 : currentFormStep)
+          }
+          status={getFormSectionStatus(agencySectionFields, errors)}
+        >
+          <AgencyFormSection
+            internshipKind={conventionValues.internshipKind}
+            agencyId={conventionValues.agencyId}
+            enablePeConnectApi={enablePeConnectApi}
+            isFrozen={isFrozen}
+          />
+        </FormSection>
       )}
 
       <input type="hidden" {...formContents.agencyId} />
-      <BeneficiaryFormSection
-        isFrozen={isFrozen}
-        internshipKind={conventionValues.internshipKind}
-      />
+      <FormSection
+        label={t.beneficiarySection.title}
+        expanded={currentFormStep === 1}
+        onExpandedChange={(expanded) =>
+          onCurrentFormStepChange(expanded ? 1 : currentFormStep)
+        }
+        status={getFormSectionStatus(beneficiarySectionFields, errors)}
+      >
+        <BeneficiaryFormSection
+          isFrozen={isFrozen}
+          internshipKind={conventionValues.internshipKind}
+        />
+      </FormSection>
 
-      <EstablishmentFormSection
-        isFrozen={isFrozen}
-        federatedIdentity={federatedIdentity}
-      />
+      <FormSection
+        label={t.establishmentSection.title}
+        expanded={currentFormStep === 2}
+        onExpandedChange={(expanded) =>
+          onCurrentFormStepChange(expanded ? 2 : currentFormStep)
+        }
+      >
+        <EstablishmentFormSection
+          isFrozen={isFrozen}
+          federatedIdentity={federatedIdentity}
+        />
+      </FormSection>
+      <FormSection
+        label={t.immersionConditionsSection.title}
+        expanded={currentFormStep === 3}
+        onExpandedChange={(expanded) =>
+          onCurrentFormStepChange(expanded ? 3 : currentFormStep)
+        }
+      >
+        <ImmersionConditionFormSection isFrozen={isFrozen} />
+      </FormSection>
 
-      <ImmersionConditionFormSection
-        federatedIdentity={federatedIdentity}
-        isFrozen={isFrozen}
-      />
       {!isFrozen && (
         <Alert
           small

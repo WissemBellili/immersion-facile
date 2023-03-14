@@ -1,5 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import React from "react";
+import { useStyles } from "tss-react/dsfr";
 import "./MainWrapper.scss";
 
 type MainWrapperProps = {
@@ -21,6 +22,7 @@ export const MainWrapper = ({
   useBackground,
   pageHeader,
 }: MainWrapperProps) => {
+  const { cx } = useStyles();
   const spacing = `${vSpacing ? `fr-py-${vSpacing}w` : ""} ${
     hSpacing ? `fr-px-${hSpacing}w` : ""
   }`;
@@ -31,7 +33,13 @@ export const MainWrapper = ({
   return (
     <>
       {pageHeader}
-      <main className={classNameValue} id="main-content">
+      <main
+        className={cx(
+          classNameValue,
+          useBackground && "im-main-wrapper--has-custom-background",
+        )}
+        id="main-content"
+      >
         {layout === "boxed" && (
           <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
             <div className={fr.cx("fr-col-lg-7", "fr-px-2w")}>{children}</div>

@@ -28,6 +28,7 @@ import { ConventionFormFields } from "src/app/components/forms/convention/Conven
 import { useMatomo } from "src/app/hooks/useMatomo";
 import { useStyles } from "tss-react/dsfr";
 import { fr } from "@codegouvfr/react-dsfr";
+import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 
 const useClearConventionSubmitFeedbackOnUnmount = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ export const ConventionForm = ({
 }: ConventionFormProps) => {
   const { cx } = useStyles();
   const federatedIdentity = useAppSelector(authSelectors.federatedIdentity);
+  const [currentFormStep, setCurrentFormStep] = useState<number>(0);
 
   const peConnectIdentity =
     federatedIdentity && isPeConnectIdentity(federatedIdentity)
@@ -136,9 +138,14 @@ export const ConventionForm = ({
     );
 
   return (
-    <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
+    <div
+      className={fr.cx(
+        "fr-grid-row",
+        "fr-grid-row--gutters",
+        "fr-grid-row--top",
+      )}
+    >
       <div className={fr.cx("fr-col-12", "fr-col-lg-7")}>
-        {/* Should be removed on accordion form */}
         <div className={cx("fr-text")}>{t.intro.welcome}</div>
         <Alert
           severity="info"
@@ -168,7 +175,11 @@ export const ConventionForm = ({
         >
           {(props) => (
             <form onReset={props.handleReset} onSubmit={props.handleSubmit}>
-              <ConventionFormFields isFrozen={isFrozen} />
+              <ConventionFormFields
+                currentFormStep={currentFormStep}
+                onCurrentFormStepChange={setCurrentFormStep}
+                isFrozen={isFrozen}
+              />
               <ConventionFeedbackNotification
                 submitFeedback={submitFeedback}
                 signatories={props.values.signatories}
@@ -177,6 +188,20 @@ export const ConventionForm = ({
           )}
         </Formik>
       </div>
+      <aside
+        className={fr.cx("fr-col-12", "fr-col-lg-5")}
+        style={{
+          position: "sticky",
+          top: "1rem",
+          overflow: "clip",
+        }}
+      >
+        <Stepper
+          title={"Informations sur la structure d’accompagnement du candidat"}
+          currentStep={currentFormStep + 1}
+          stepCount={4}
+        />
+      </aside>
     </div>
   );
 };

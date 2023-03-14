@@ -100,21 +100,21 @@ const immersionTexts = (internshipKind: InternshipKind) => ({
   agencySection: {
     title:
       internshipKind === "immersion"
-        ? "Pour commencer nous avons besoin de"
-        : "Pour commencer",
+        ? "1. Informations sur la structure d’accompagnement du candidat"
+        : "1. Pour commencer",
   },
   beneficiarySection: {
     title:
       internshipKind === "immersion"
-        ? "1. Informations du candidat"
-        : "1. Vos coordonnées",
+        ? "2. Informations sur le candidat"
+        : "2. Vos coordonnées",
     isMinorLabel:
       internshipKind === "immersion"
         ? "La personne qui va faire l'immersion est-elle mineure ?"
         : "Etes vous mineur ou majeur protégé ?",
   },
   establishmentSection: {
-    title: "2. Coordonnées de l'entreprise",
+    title: "3. Informations sur l’entreprise",
     subtitle:
       internshipKind === "immersion"
         ? "Les questions suivantes doivent être complétées avec la personne qui vous accueillera pendant votre immersion"
@@ -125,8 +125,8 @@ const immersionTexts = (internshipKind: InternshipKind) => ({
   immersionConditionsSection: {
     title:
       internshipKind === "immersion"
-        ? "3. Conditions d’accueil de l’immersion professionnelle"
-        : "3. Conditions d’accueil du stage",
+        ? "4. Conditions d’accueil de l’immersion professionnelle"
+        : "4. Conditions d’accueil du stage",
   },
   yes: "Oui",
   no: "Non",

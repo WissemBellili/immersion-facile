@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import React, { useEffect } from "react";
-import { SectionTitle, Select, SelectOption } from "react-design-system";
+import { Select, SelectOption } from "react-design-system";
 import { useDispatch } from "react-redux";
 import {
   ConventionDto,
@@ -65,7 +65,6 @@ export const BeneficiaryFormSection = ({
 
   return (
     <>
-      <SectionTitle>{t.beneficiarySection.title}</SectionTitle>
       <TextInput
         {...formContents["signatories.beneficiary.firstName"]}
         {...(userFieldsAreFilled ? { value: connectedUser.firstName } : {})}

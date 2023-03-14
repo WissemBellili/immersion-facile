@@ -28,3 +28,4 @@ export * from "./section-title";
 export * from "./nps-form";
 export * from "./convention-document";
 export * from "./convention-requirements";
+export * from "./form-section";

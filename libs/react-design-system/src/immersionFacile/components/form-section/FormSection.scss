@@ -1,0 +1,36 @@
+$statuses: (
+  default: (
+    color: transparent,
+    border-color: transparent,
+    icon: "",
+  ),
+  valid: (
+    color: green,
+    border-color: green,
+    content: "✅",
+  ),
+  invalid: (
+    color: red,
+    border-color: red,
+    content: "❌",
+  ),
+);
+
+.im-form-section {
+  // "default" | "valid" | "invalid"
+  @each $status, $colors in $statuses {
+    &--#{$status} {
+      &:after {
+        content: map-get($colors, "content");
+        display: block;
+        position: absolute;
+        top: 0.7rem;
+        left: -1.5rem;
+      }
+      &:before {
+        box-shadow: inset 0 1px 0 0 map-get($colors, "border-color"),
+          0 1px 0 0 map-get($colors, "border-color");
+      }
+    }
+  }
+}

@@ -1,11 +1,10 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { useFormikContext } from "formik";
 import React from "react";
-import { SectionTitle } from "react-design-system";
 import { useDispatch } from "react-redux";
-import { ConventionDto, FederatedIdentity } from "shared";
+import { ConventionDto } from "shared";
 import { RadioGroup } from "src/app/components/forms/commons/RadioGroup";
-import { ShareActions } from "src/app/components/forms/convention/ShareActions";
 import { formConventionFieldsLabels } from "src/app/contents/forms/convention/formConvention";
 import { useConventionTextsFromFormikContext } from "src/app/contents/forms/convention/textSetup";
 import { useTutorIsEstablishmentRepresentative } from "src/app/hooks/convention.hooks";
@@ -17,16 +16,13 @@ import { conventionSlice } from "src/core-logic/domain/convention/convention.sli
 import { EstablishementTutorFields } from "./EstablishementTutorFields";
 import { EstablishmentBusinessFields } from "./EstablishmentBusinessFields";
 import { EstablishmentRepresentativeFields } from "./EstablishmentRepresentativeFields";
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
 
 type EstablishmentFormSectionParams = {
   isFrozen: boolean | undefined;
-  federatedIdentity: FederatedIdentity | undefined;
 };
 
 export const EstablishmentFormSection = ({
   isFrozen,
-  federatedIdentity,
 }: EstablishmentFormSectionParams): JSX.Element => {
   useTutorIsEstablishmentRepresentative();
 
@@ -46,13 +42,6 @@ export const EstablishmentFormSection = ({
 
   return (
     <>
-      <SectionTitle>
-        {t.establishmentSection.title}
-        <ShareActions
-          isFrozen={isFrozen || isFetchingSiret}
-          federatedIdentity={federatedIdentity}
-        />
-      </SectionTitle>
       <Alert
         severity="info"
         small

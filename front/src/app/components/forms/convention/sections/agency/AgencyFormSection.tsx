@@ -1,7 +1,5 @@
 import React from "react";
 import { InternshipKind } from "shared";
-import { SectionTitle } from "react-design-system";
-import { useConventionTextsFromFormikContext } from "src/app/contents/forms/convention/textSetup";
 import { AgencyDisplayReadOnly } from "./AgencyDisplayReadOnly";
 import { AgencySelector } from "./AgencySelector";
 
@@ -17,21 +15,17 @@ export const AgencyFormSection = ({
   agencyId,
   enablePeConnectApi,
   isFrozen,
-}: agencyFormSectionProperties) => {
-  const t = useConventionTextsFromFormikContext();
-  return (
-    <>
-      <SectionTitle>{t.agencySection.title}</SectionTitle>
-      {isFrozen ? (
-        <AgencyDisplayReadOnly agencyId={agencyId} />
-      ) : (
-        <AgencySelector
-          internshipKind={internshipKind}
-          disabled={isFrozen}
-          defaultAgencyId={agencyId}
-          shouldListAll={!enablePeConnectApi}
-        />
-      )}
-    </>
-  );
-};
+}: agencyFormSectionProperties) => (
+  <>
+    {isFrozen ? (
+      <AgencyDisplayReadOnly agencyId={agencyId} />
+    ) : (
+      <AgencySelector
+        internshipKind={internshipKind}
+        disabled={isFrozen}
+        defaultAgencyId={agencyId}
+        shouldListAll={!enablePeConnectApi}
+      />
+    )}
+  </>
+);
