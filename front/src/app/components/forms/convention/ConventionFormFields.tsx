@@ -79,8 +79,6 @@ export const ConventionFormFields = ({
   );
   const formContents = getFormFields();
   const t = useConventionTextsFromFormikContext();
-  const federatedIdentity =
-    conventionValues.signatories.beneficiary.federatedIdentity;
 
   const agencySectionFields: Array<keyof ConventionReadDto> = ["agencyId"];
   const beneficiarySectionFields = [
@@ -146,10 +144,7 @@ export const ConventionFormFields = ({
           onCurrentFormStepChange(expanded ? 2 : currentFormStep)
         }
       >
-        <EstablishmentFormSection
-          isFrozen={isFrozen}
-          federatedIdentity={federatedIdentity}
-        />
+        <EstablishmentFormSection isFrozen={isFrozen} />
       </FormSection>
       <FormSection
         label={t.immersionConditionsSection.title}
