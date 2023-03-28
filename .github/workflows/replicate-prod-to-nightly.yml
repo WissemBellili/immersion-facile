@@ -25,7 +25,7 @@ jobs:
           scalingo --region osc-secnum-fr1 --app if-prod-nightly-db run bash -c "echo 'Installing pgsql-client' &&
           dbclient-fetcher pgsql &&
           echo 'Dumping data' &&
-          pg_dump --clean --format c --no-owner --no-privileges --no-comments --exclude-schema 'information_schema' --exclude-schema '^pg_*' --dbname "$SOURCE_PROD_DATABASE_VAR" --file dump.pgsql &&
+          pg_dump --clean --format c --no-owner --no-privileges --no-comments --exclude-schema 'information_schema' --exclude-schema '^pg_*' --exclude-schema '^tiger*' --dbname "$SOURCE_PROD_DATABASE_VAR" --file dump.pgsql &&
           echo 'Finished dumping data' &&
           pg_restore --clean --verbose --no-owner --no-privileges --no-comments --dbname "$DATABASE_VAR" dump.pgsql; 
           exit 0"
