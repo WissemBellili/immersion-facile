@@ -1,13 +1,10 @@
-import DownloadIcon from "@mui/icons-material/Download";
-import { Checkbox, CircularProgress } from "@mui/material";
 import React, { useState } from "react";
 import { fr } from "@codegouvfr/react-dsfr";
+import DownloadIcon from "@mui/icons-material/Download";
+import { Checkbox, CircularProgress } from "@mui/material";
+import { useAdminToken } from "src/app/hooks/useAdminToken";
+import { HttpExcelExportGateway } from "src/core-logic/adapters/ExcelExportGateway/HttpExcelExportGateway";
 
-import {
-  ArrayDropdown,
-  DsfrTitle,
-  ImmersionTextField,
-} from "react-design-system";
 import {
   AgenciesExportableParams,
   ContactRequestsExportableParams,
@@ -16,8 +13,11 @@ import {
   EstablishmentsWithAggregatedOffersExportableParams,
   EstablishmentsWithFlattenOffersExportableParams,
 } from "shared";
-import { HttpExcelExportGateway } from "src/core-logic/adapters/ExcelExportGateway/HttpExcelExportGateway";
-import { useAdminToken } from "src/app/hooks/useAdminToken";
+import {
+  ArrayDropdown,
+  DsfrTitle,
+  ImmersionTextField,
+} from "react-design-system";
 
 // TODO Mettre dans les dépendances ?
 export const excelExportGateway = new HttpExcelExportGateway(

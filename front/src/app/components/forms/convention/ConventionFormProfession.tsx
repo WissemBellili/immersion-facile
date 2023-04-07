@@ -2,9 +2,10 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { TextInputError } from "react-design-system";
-import { AppellationDto, ConventionReadDto } from "shared";
 import { AppellationAutocomplete } from "src/app/components/forms/autocomplete/AppellationAutocomplete";
+
+import { AppellationDto, ConventionReadDto } from "shared";
+import { TextInputError } from "react-design-system";
 
 type ConventionFormProfessionProps = {
   label: string;

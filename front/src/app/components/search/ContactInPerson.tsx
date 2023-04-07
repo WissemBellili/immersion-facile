@@ -1,6 +1,11 @@
-import { useForm } from "react-hook-form";
 import React from "react";
-import { ModalTitle } from "react-design-system";
+import { useForm } from "react-hook-form";
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { Input } from "@codegouvfr/react-dsfr/Input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { makeFieldError } from "src/app/hooks/formContents.hooks";
+import { immersionSearchGateway } from "src/config/dependencies";
+
 import {
   ContactEstablishmentInPersonDto,
   contactEstablishmentInPersonSchema,
@@ -8,11 +13,7 @@ import {
   RomeDto,
   SiretDto,
 } from "shared";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { immersionSearchGateway } from "src/config/dependencies";
-import { Input } from "@codegouvfr/react-dsfr/Input";
-import { makeFieldError } from "src/app/hooks/formContents.hooks";
-import { Button } from "@codegouvfr/react-dsfr/Button";
+import { ModalTitle } from "react-design-system";
 
 type ContactInPersonProps = {
   siret: SiretDto;

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { LinkHome, MainWrapper } from "react-design-system";
-import { ConventionMagicLinkPayload, domElementIds } from "shared";
-import { decodeMagicLinkJwtWithoutSignatureCheck } from "shared";
+import { fr } from "@codegouvfr/react-dsfr";
+import { Alert } from "@codegouvfr/react-dsfr/Alert";
+import { Button } from "@codegouvfr/react-dsfr/Button";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
 import { routes } from "src/app/routes/routes";
 import { conventionGateway } from "src/config/dependencies";
 import { Route } from "type-route";
-import { fr } from "@codegouvfr/react-dsfr";
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
-import { Button } from "@codegouvfr/react-dsfr/Button";
+
+import { ConventionMagicLinkPayload, domElementIds } from "shared";
+import { decodeMagicLinkJwtWithoutSignatureCheck } from "shared";
+import { LinkHome, MainWrapper } from "react-design-system";
 
 interface RenewExpiredLinkProps {
   route: Route<typeof routes.renewConventionMagicLink>;

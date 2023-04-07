@@ -1,4 +1,6 @@
 import { AxiosInstance } from "axios";
+
+import { AbsoluteUrl } from "shared";
 import {
   configureHttpClient,
   createAxiosHandlerCreator,
@@ -6,7 +8,7 @@ import {
   createTargets,
   Target,
 } from "http-client";
-import { AbsoluteUrl } from "shared";
+
 import { InclusionConnectLogoutQueryParams } from "./inclusionConnectApi.dto";
 
 type WithContentTypeUrlEncoded = {

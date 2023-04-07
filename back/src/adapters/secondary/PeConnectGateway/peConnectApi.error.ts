@@ -1,11 +1,14 @@
 import { AxiosError } from "axios";
+
 import {
   ConnectionRefusedError,
   HTTP_STATUS,
   ManagedRedirectError,
   RawRedirectError,
 } from "shared";
+
 import { UnhandledError } from "../../primary/helpers/unhandledError";
+
 import { PeConnectTargetsKind } from "./peConnectApi.dto";
 
 // ! In a map the highest priority is given to the lasted entry

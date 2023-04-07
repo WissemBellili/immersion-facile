@@ -1,6 +1,7 @@
 import { Observable, Subject } from "rxjs";
-import { GetSiretInfo } from "shared";
 import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
+
+import { GetSiretInfo } from "shared";
 
 export class TestSiretGatewayThroughBack implements SiretGatewayThroughBack {
   isSiretAlreadyInSaved(): Observable<boolean> {

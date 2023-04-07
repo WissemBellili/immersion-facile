@@ -1,10 +1,10 @@
-export { configureHttpClient, createTargets } from "./configureHttpClient";
 export { createAxiosHandlerCreator } from "./adapters/createAxiosHandlerCreator";
-export type { Url } from "./utilityTypes";
 export type {
+  CreateTargets,
+  HandlerCreator,
   HttpClient,
   HttpResponse,
-  HandlerCreator,
   Target,
-  CreateTargets,
 } from "./configureHttpClient";
+export { configureHttpClient, createTargets } from "./configureHttpClient";
+export type { Url } from "./utilityTypes";

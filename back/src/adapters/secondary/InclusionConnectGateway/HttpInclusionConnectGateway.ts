@@ -1,13 +1,15 @@
-import { HttpClient } from "http-client";
 import { queryParamsAsString } from "shared";
-import { InclusionConnectGateway } from "../../../domain/inclusionConnect/port/InclusionConnectGateway";
+import { HttpClient } from "http-client";
+
 import {
   InclusionAccessTokenResponse,
   inclusionAccessTokenResponseSchema,
 } from "../../../domain/inclusionConnect/port/InclusionAccessTokenResponse";
+import { InclusionConnectGateway } from "../../../domain/inclusionConnect/port/InclusionConnectGateway";
 import { InclusionConnectConfig } from "../../../domain/inclusionConnect/useCases/InitiateInclusionConnect";
 import { createLogger } from "../../../utils/logger";
 import { validateAndParseZodSchema } from "../../primary/helpers/httpErrors";
+
 import { InclusionConnectExternalTargets } from "./inclusionConnectApi.client";
 
 const logger = createLogger(__filename);

@@ -1,9 +1,11 @@
+import type { CreateTargets, Target, Url } from "http-client";
+import { createTargets } from "http-client";
+
 import { UserAndPassword, WithAuthorization } from "../admin/admin.dto";
 import { AgencyId } from "../agency/agency.dto";
-import { adminLogin } from "./routes";
-import type { Target, CreateTargets, Url } from "http-client";
-import { createTargets } from "http-client";
 import { FormEstablishmentBatchDto } from "../formEstablishment/FormEstablishment.dto";
+
+import { adminLogin } from "./routes";
 
 type AuthorizedTarget<
   Body = void,

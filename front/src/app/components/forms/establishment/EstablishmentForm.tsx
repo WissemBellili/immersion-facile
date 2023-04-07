@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { keys } from "ramda";
 import { fr } from "@codegouvfr/react-dsfr";
+import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
-import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { ErrorNotifications } from "react-design-system";
+import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { keys } from "ramda";
+import { booleanSelectOptions } from "src/app/contents/forms/common/values";
+import { formEstablishmentFieldsLabels } from "src/app/contents/forms/establishment/formEstablishment";
+import {
+  formErrorsToFlatErrors,
+  useFormContents,
+} from "src/app/hooks/formContents.hooks";
+import { useFeatureFlags } from "src/app/hooks/useFeatureFlags";
+
 import {
   AppellationDto,
   defaultMaxContactsPerWeek,
@@ -20,19 +27,14 @@ import {
   SiretDto,
   toDotNotation,
 } from "shared";
+import { ErrorNotifications } from "react-design-system";
+
 import { BusinessContact } from "./BusinessContact";
 import {
   emptyAppellation,
   MultipleAppellationInput,
 } from "./MultipleAppellationInput";
 import { SearchResultPreview } from "./SearchResultPreview";
-import { booleanSelectOptions } from "src/app/contents/forms/common/values";
-import { formEstablishmentFieldsLabels } from "src/app/contents/forms/establishment/formEstablishment";
-import {
-  formErrorsToFlatErrors,
-  useFormContents,
-} from "src/app/hooks/formContents.hooks";
-import { useFeatureFlags } from "src/app/hooks/useFeatureFlags";
 
 type EstablishmentFormProps = {
   initialValues: FormEstablishmentDto;

@@ -1,22 +1,33 @@
 import axios from "axios";
-import { HttpClient } from "http-client";
+import { ZodError } from "zod";
+
 import {
   HTTP_STATUS,
   parseZodSchemaAndLogErrorOnParsingFailure,
   queryParamsAsString,
 } from "shared";
+import { HttpClient } from "http-client";
+
 import { AccessTokenDto } from "../../../domain/peConnect/dto/AccessToken.dto";
 import { PeConnectAdvisorDto } from "../../../domain/peConnect/dto/PeConnectAdvisor.dto";
 import { PeConnectUserDto } from "../../../domain/peConnect/dto/PeConnectUser.dto";
 import { externalAccessTokenSchema } from "../../../domain/peConnect/port/AccessToken.schema";
 import { PeConnectGateway } from "../../../domain/peConnect/port/PeConnectGateway";
+import { createLogger } from "../../../utils/logger";
 import { notifyObjectDiscord } from "../../../utils/notifyDiscord";
 import { UnhandledError } from "../../primary/helpers/unhandledError";
+
 import {
   toAccessToken,
   toPeConnectAdvisorDto,
   toPeConnectUserDto,
 } from "./peConnectApi.client";
+import {
+  exchangeCodeForAccessTokenCounter,
+  getAdvisorsInfoCounter,
+  getUserInfoCounter,
+  getUserStatutInfoCounter,
+} from "./peConnectApi.counter";
 import {
   ExternalPeConnectAdvisor,
   ExternalPeConnectUser,
@@ -25,21 +36,12 @@ import {
   PeConnectTargets,
   PeConnectTargetsKind,
 } from "./peConnectApi.dto";
+import { peConnectErrorStrategy as peConnectAxiosErrorStrategy } from "./peConnectApi.error";
 import {
   externalPeConnectAdvisorsSchema,
   externalPeConnectUserSchema,
   externalPeConnectUserStatutSchema,
 } from "./peConnectApi.schema";
-
-import { ZodError } from "zod";
-import { createLogger } from "../../../utils/logger";
-import {
-  exchangeCodeForAccessTokenCounter,
-  getAdvisorsInfoCounter,
-  getUserInfoCounter,
-  getUserStatutInfoCounter,
-} from "./peConnectApi.counter";
-import { peConnectErrorStrategy as peConnectAxiosErrorStrategy } from "./peConnectApi.error";
 
 const logger = createLogger(__filename);
 export class HttpPeConnectGateway implements PeConnectGateway {

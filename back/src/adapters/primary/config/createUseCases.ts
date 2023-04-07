@@ -1,14 +1,17 @@
 import { keys } from "ramda";
+
 import { AgencyId, ApiConsumerId, SiretDto, sleep } from "shared";
+import { ExportData } from "../../../domain/backoffice/useCases/ExportData";
+import { SetFeatureFlag } from "../../../domain/backoffice/useCases/SetFeatureFlag";
+
+import { LookupLocation } from "../../../domain/address/useCases/LookupLocation";
 import { LookupStreetAddress } from "../../../domain/address/useCases/LookupStreetAddress";
 import {
-  GenerateBackOfficeJwt,
   GenerateAuthenticatedUserJwt,
+  GenerateBackOfficeJwt,
   GenerateConventionJwt,
   GenerateEditFormEstablishmentJwt,
 } from "../../../domain/auth/jwt";
-import { ExportData } from "../../../domain/backoffice/useCases/ExportData";
-import { SetFeatureFlag } from "../../../domain/backoffice/useCases/SetFeatureFlag";
 import { AddConvention } from "../../../domain/convention/useCases/AddConvention";
 import { AddAgency } from "../../../domain/convention/useCases/agencies/AddAgency";
 import { ListAgenciesByFilter } from "../../../domain/convention/useCases/agencies/ListAgenciesByFilter";
@@ -72,13 +75,13 @@ import { RomeSearch } from "../../../domain/rome/useCases/RomeSearch";
 import { GetSiret } from "../../../domain/sirene/useCases/GetSiret";
 import { GetSiretIfNotAlreadySaved } from "../../../domain/sirene/useCases/GetSiretIfNotAlreadySaved";
 import { NotFoundError } from "../helpers/httpErrors";
+
 import { AppConfig } from "./appConfig";
 import { Gateways } from "./createGateways";
 import {
   makeGenerateConventionMagicLinkUrl,
   makeGenerateEditFormEstablishmentUrl,
 } from "./magicLinkUrl";
-import { LookupLocation } from "../../../domain/address/useCases/LookupLocation";
 
 export const createUseCases = (
   config: AppConfig,

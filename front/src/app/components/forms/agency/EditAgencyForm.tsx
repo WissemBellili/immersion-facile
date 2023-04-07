@@ -1,20 +1,11 @@
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
-import { ErrorNotifications } from "react-design-system";
 import { Select } from "@codegouvfr/react-dsfr/Select";
-import { FormProvider, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import {
-  AgencyDto,
-  AgencyStatus,
-  allAgencyStatuses,
-  editAgencySchema,
-  toDotNotation,
-  zEmail,
-} from "shared";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   AgencyFormCommonFields,
   AgencyLogoUpload,
@@ -27,10 +18,21 @@ import {
   useFormContents,
 } from "src/app/hooks/formContents.hooks";
 import { useAppSelector } from "src/app/hooks/reduxHooks";
-import "src/assets/admin.css";
 import { agencyAdminSelectors } from "src/core-logic/domain/agenciesAdmin/agencyAdmin.selectors";
 import { agencyAdminSlice } from "src/core-logic/domain/agenciesAdmin/agencyAdmin.slice";
+
+import {
+  AgencyDto,
+  AgencyStatus,
+  allAgencyStatuses,
+  editAgencySchema,
+  toDotNotation,
+  zEmail,
+} from "shared";
 import { domElementIds } from "shared";
+import { ErrorNotifications } from "react-design-system";
+
+import "src/assets/admin.css";
 
 type EditAgencyFormProperties = {
   agency: AgencyDto;

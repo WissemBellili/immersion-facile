@@ -1,4 +1,4 @@
-import { createTargets, CreateTargets, Target } from "http-client";
+import { CreateTargets, createTargets, Target } from "http-client";
 
 const lookupLocationUrl = "/address/lookup-location/";
 const lookupStreetAddressUrl = "/address/lookupStreetAddress";

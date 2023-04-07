@@ -1,7 +1,12 @@
-import { createTargets, CreateTargets, HttpClient, Target } from "http-client";
 import { from, Observable } from "rxjs";
 import {
-  BackOfficeJwt,
+  ActiveOrRejectedStatus,
+  AgencyGateway,
+  WithActiveOrRejectedStatus,
+  WithAgencyStatus,
+} from "src/core-logic/ports/AgencyGateway";
+
+import {
   agenciesIdAndNameSchema,
   agenciesRoute,
   AgencyDto,
@@ -13,18 +18,14 @@ import {
   agencyPublicDisplaySchema,
   agencyPublicInfoByIdRoute,
   agencySchema,
+  BackOfficeJwt,
   CreateAgencyDto,
   DepartmentCode,
   ListAgenciesRequestDto,
   WithAgencyId,
   WithAuthorization,
 } from "shared";
-import {
-  ActiveOrRejectedStatus,
-  AgencyGateway,
-  WithActiveOrRejectedStatus,
-  WithAgencyStatus,
-} from "src/core-logic/ports/AgencyGateway";
+import { CreateTargets, createTargets, HttpClient, Target } from "http-client";
 
 export type AgencyTargets = CreateTargets<{
   getAgencyAdminById: Target<

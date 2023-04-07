@@ -1,4 +1,5 @@
 import { parseISO } from "date-fns";
+
 import {
   AgencyDtoBuilder,
   ConventionDto,
@@ -9,22 +10,23 @@ import {
   frontRoutes,
   reasonableSchedule,
 } from "shared";
+
 import {
   expectEmailFinalValidationConfirmationMatchingConvention,
   getValidatedConventionFinalConfirmationParams,
 } from "../../../../_testBuilders/emailAssertions";
-
+import { fakeGenerateMagicLinkUrlFn } from "../../../../_testBuilders/jwtTestHelper";
 import {
   createInMemoryUow,
   InMemoryUnitOfWork,
 } from "../../../../adapters/primary/config/uowConfig";
+import { CustomTimeGateway } from "../../../../adapters/secondary/core/TimeGateway/CustomTimeGateway";
+import { RealTimeGateway } from "../../../../adapters/secondary/core/TimeGateway/RealTimeGateway";
 import { InMemoryEmailGateway } from "../../../../adapters/secondary/emailGateway/InMemoryEmailGateway";
 import { InMemoryUowPerformer } from "../../../../adapters/secondary/InMemoryUowPerformer";
 import { ConventionPoleEmploiUserAdvisorEntity } from "../../../peConnect/dto/PeConnect.dto";
+
 import { NotifyAllActorsOfFinalConventionValidation } from "./NotifyAllActorsOfFinalConventionValidation";
-import { RealTimeGateway } from "../../../../adapters/secondary/core/TimeGateway/RealTimeGateway";
-import { CustomTimeGateway } from "../../../../adapters/secondary/core/TimeGateway/CustomTimeGateway";
-import { fakeGenerateMagicLinkUrlFn } from "../../../../_testBuilders/jwtTestHelper";
 
 const establishmentTutorEmail = "boss@mail.com";
 const validConvention: ConventionDto = new ConventionDtoBuilder()

@@ -1,4 +1,3 @@
-import { expectToEqual } from "shared";
 import { inclusionConnectedSelectors } from "src/core-logic/domain/inclusionConnected/inclusionConnected.selectors";
 import {
   InclusionConnectedFeedback,
@@ -9,6 +8,8 @@ import {
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
 import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import { expectToEqual } from "shared";
 
 describe("InclusionConnected", () => {
   let store: ReduxStore;

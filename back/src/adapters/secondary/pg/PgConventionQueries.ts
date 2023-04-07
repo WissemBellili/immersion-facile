@@ -1,5 +1,6 @@
 import { PoolClient } from "pg";
 import format from "pg-format";
+
 import {
   ConventionId,
   ConventionReadDto,
@@ -7,7 +8,9 @@ import {
   ListConventionsRequestDto,
   validatedConventionStatuses,
 } from "shared";
+
 import { ConventionQueries } from "../../../domain/convention/ports/ConventionQueries";
+
 import {
   getReadConventionById,
   selectAllConventionDtosById,

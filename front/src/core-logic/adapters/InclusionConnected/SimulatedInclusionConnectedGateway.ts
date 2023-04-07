@@ -1,6 +1,7 @@
 import { Observable, of } from "rxjs";
-import { AbsoluteUrl } from "shared";
 import { InclusionConnectedGateway } from "src/core-logic/ports/InclusionConnectedGateway";
+
+import { AbsoluteUrl } from "shared";
 
 export class SimulatedInclusionConnectedGateway
   implements InclusionConnectedGateway

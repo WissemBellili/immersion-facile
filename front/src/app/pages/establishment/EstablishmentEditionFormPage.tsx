@@ -1,13 +1,6 @@
-import { Input } from "@codegouvfr/react-dsfr/Input";
 import React, { useEffect, useState } from "react";
-import { Loader, MainWrapper, PageHeader } from "react-design-system";
 import { useFormContext } from "react-hook-form";
-import {
-  addressDtoToString,
-  decodeMagicLinkJwtWithoutSignatureCheck,
-  EstablishmentJwtPayload,
-  FormEstablishmentDto,
-} from "shared";
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { AddressAutocomplete } from "src/app/components/forms/autocomplete/AddressAutocomplete";
 import { EstablishmentForm } from "src/app/components/forms/establishment/EstablishmentForm";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
@@ -17,6 +10,14 @@ import { useFeatureFlags } from "src/app/hooks/useFeatureFlags";
 import { routes } from "src/app/routes/routes";
 import { establishmentGateway } from "src/config/dependencies";
 import { Route } from "type-route";
+
+import {
+  addressDtoToString,
+  decodeMagicLinkJwtWithoutSignatureCheck,
+  EstablishmentJwtPayload,
+  FormEstablishmentDto,
+} from "shared";
+import { Loader, MainWrapper, PageHeader } from "react-design-system";
 
 export const EstablishmentEditionFormPage = ({
   route,

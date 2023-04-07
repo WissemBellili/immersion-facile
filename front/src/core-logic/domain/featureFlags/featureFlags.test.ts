@@ -1,4 +1,3 @@
-import { expectToEqual, FeatureFlags } from "shared";
 import { featureFlagsSelector } from "src/core-logic/domain/featureFlags/featureFlags.selector";
 import {
   featureFlagsSlice,
@@ -9,6 +8,8 @@ import {
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
 import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import { expectToEqual, FeatureFlags } from "shared";
 
 const defaultFeatureFlags: FeatureFlags = {
   enableInseeApi: true,

@@ -1,5 +1,4 @@
 import { Store } from "@reduxjs/toolkit";
-import { expectToEqual, RomeCode, RomeDto } from "shared";
 import { romeAutocompleteSelector } from "src/core-logic/domain/romeAutocomplete/romeAutocomplete.selectors";
 import { romeAutocompleteSlice } from "src/core-logic/domain/romeAutocomplete/romeAutocomplete.slice";
 import { createScenarioUnitTest } from "src/core-logic/domain/testHelpers/test.helpers";
@@ -7,6 +6,8 @@ import {
   StoreAndDeps,
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
+
+import { expectToEqual, RomeCode, RomeDto } from "shared";
 
 const makeFeedRomeAutocompleteGatewayWithRomeDtos =
   (dependencies: TestDependencies) => (romeDtos: RomeDto[]) => {

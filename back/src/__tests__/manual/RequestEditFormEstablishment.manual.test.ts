@@ -1,5 +1,8 @@
 import axios from "axios";
+
 import { immersionFacileContactEmail } from "shared";
+
+import { generateEditFormEstablishmentJwtTestFn } from "../../_testBuilders/jwtTestHelper";
 import {
   AppConfig,
   makeEmailAllowListPredicate,
@@ -15,7 +18,6 @@ import { UnitOfWork } from "../../domain/core/ports/UnitOfWork";
 import { ContactEntity } from "../../domain/immersionOffer/entities/ContactEntity";
 import { EstablishmentAggregateRepository } from "../../domain/immersionOffer/ports/EstablishmentAggregateRepository";
 import { RequestEditFormEstablishment } from "../../domain/immersionOffer/useCases/RequestEditFormEstablishment";
-import { generateEditFormEstablishmentJwtTestFn } from "../../_testBuilders/jwtTestHelper";
 
 // Requires the following environment variables to be set for the tests to pass:
 // - SENDINBLUE_API_KEY

@@ -1,4 +1,6 @@
 import { Observable, of, throwError } from "rxjs";
+import { AdminGateway } from "src/core-logic/ports/AdminGateway";
+
 import {
   AbsoluteUrl,
   BackOfficeJwt,
@@ -7,7 +9,6 @@ import {
   GetDashboardParams,
   UserAndPassword,
 } from "shared";
-import { AdminGateway } from "src/core-logic/ports/AdminGateway";
 
 export class SimulatedAdminGateway implements AdminGateway {
   login({ user }: UserAndPassword): Observable<BackOfficeJwt> {

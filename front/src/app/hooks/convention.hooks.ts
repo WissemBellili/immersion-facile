@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import {
-  ConventionReadDto,
-  EstablishmentRepresentative,
-  getSignatoryKey,
-  isEstablishmentTutorIsEstablishmentRepresentative,
-} from "shared";
 import { useAppSelector } from "src/app/hooks/reduxHooks";
 import { conventionSelectors } from "src/core-logic/domain/convention/convention.selectors";
 import {
   conventionSlice,
   FetchConventionRequestedPayload,
 } from "src/core-logic/domain/convention/convention.slice";
+
+import {
+  ConventionReadDto,
+  EstablishmentRepresentative,
+  getSignatoryKey,
+  isEstablishmentTutorIsEstablishmentRepresentative,
+} from "shared";
 
 export const useConvention = (payload: FetchConventionRequestedPayload) => {
   const convention = useAppSelector(conventionSelectors.convention);

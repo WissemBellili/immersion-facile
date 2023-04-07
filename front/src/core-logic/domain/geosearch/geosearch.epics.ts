@@ -10,6 +10,7 @@ import {
   ActionOfSlice,
   AppEpic,
 } from "src/core-logic/storeConfig/redux.helpers";
+
 import { geosearchSlice } from "./geosearch.slice";
 
 type GeosearchAction = ActionOfSlice<typeof geosearchSlice>;

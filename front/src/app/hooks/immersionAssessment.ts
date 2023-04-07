@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
-import { ImmersionAssessmentDto } from "shared";
 import { immersionAssessmentSlice } from "src/core-logic/domain/immersionAssessment/immersionAssessment.slice";
+
+import { ImmersionAssessmentDto } from "shared";
 
 export const useImmersionAssessment = (jwt: string) => {
   const dispatch = useDispatch();

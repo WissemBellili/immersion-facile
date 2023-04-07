@@ -1,6 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { createAxiosHandlerCreator } from "http-client";
+
 import {
   expectObjectsToMatch,
   expectPromiseToFailWithError,
@@ -9,7 +9,10 @@ import {
   testManagedRedirectError,
   testRawRedirectError,
 } from "shared";
+import { createAxiosHandlerCreator } from "http-client";
+
 import { AppConfig } from "../../primary/config/appConfig";
+
 import { HttpPeConnectGateway } from "./HttpPeConnectGateway";
 import {
   makePeConnectHttpClient,

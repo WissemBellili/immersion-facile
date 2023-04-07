@@ -1,10 +1,12 @@
+import { ZodType, ZodTypeDef } from "zod";
+
 import {
   ConventionMagicLinkPayload,
   lookupLocationInputSchema,
   LookupSearchResult,
   WithLookupLocationInput,
 } from "shared";
-import { ZodType, ZodTypeDef } from "zod";
+
 import { UseCase } from "../../core/UseCase";
 import { AddressGateway } from "../../immersionOffer/ports/AddressGateway";
 

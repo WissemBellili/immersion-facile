@@ -1,13 +1,14 @@
-import Autocomplete from "@mui/material/Autocomplete";
 import React, { useState } from "react";
-import { AutocompleteInput } from "react-design-system";
-import { LookupSearchResult } from "shared";
+import { useDispatch } from "react-redux";
 import { fr } from "@codegouvfr/react-dsfr";
-import { useStyles } from "tss-react/dsfr";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useAppSelector } from "src/app/hooks/reduxHooks";
 import { geosearchSelectors } from "src/core-logic/domain/geosearch/geosearch.selectors";
-import { useDispatch } from "react-redux";
 import { geosearchSlice } from "src/core-logic/domain/geosearch/geosearch.slice";
+import { useStyles } from "tss-react/dsfr";
+
+import { LookupSearchResult } from "shared";
+import { AutocompleteInput } from "react-design-system";
 
 export type PlaceAutocompleteProps = {
   label: string;

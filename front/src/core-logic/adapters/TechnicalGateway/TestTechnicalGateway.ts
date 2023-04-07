@@ -1,11 +1,12 @@
 import { Subject } from "rxjs";
+import { TechnicalGateway } from "src/core-logic/ports/TechnicalGateway";
+
 import {
   AbsoluteUrl,
   BackOfficeJwt,
   FeatureFlags,
   SetFeatureFlagParams,
 } from "shared";
-import { TechnicalGateway } from "src/core-logic/ports/TechnicalGateway";
 
 export class TestTechnicalGateway implements TechnicalGateway {
   getAllFeatureFlags = () => this.featureFlags$;

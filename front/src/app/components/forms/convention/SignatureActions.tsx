@@ -1,7 +1,11 @@
-import { ButtonsGroup } from "@codegouvfr/react-dsfr/ButtonsGroup";
-import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import { ButtonsGroup } from "@codegouvfr/react-dsfr/ButtonsGroup";
+import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
+import { makeFieldError } from "src/app/hooks/formContents.hooks";
+import { useAppSelector } from "src/app/hooks/reduxHooks";
+import { conventionSelectors } from "src/core-logic/domain/convention/convention.selectors";
+
 import {
   ConventionField,
   getConventionFieldName,
@@ -10,9 +14,6 @@ import {
   Signatory,
   SignatoryRole,
 } from "shared";
-import { makeFieldError } from "src/app/hooks/formContents.hooks";
-import { useAppSelector } from "src/app/hooks/reduxHooks";
-import { conventionSelectors } from "src/core-logic/domain/convention/convention.selectors";
 
 const processedDataBySignatoryRole: Record<
   SignatoryRole,

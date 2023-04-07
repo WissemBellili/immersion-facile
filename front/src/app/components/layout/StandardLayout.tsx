@@ -1,12 +1,14 @@
 import React from "react";
-import { renderContent } from "html-templates/src/components/email";
-import { MainWrapper } from "react-design-system";
+import { fr } from "@codegouvfr/react-dsfr";
 import { getStandardContents } from "src/app/contents/standard/textSetup";
 import { StandardPageSlugs } from "src/app/routes/route-params";
 import { routes } from "src/app/routes/routes";
 import { Route } from "type-route";
+
+import { MainWrapper } from "react-design-system";
+import { renderContent } from "html-templates/src/components/email";
+
 import { HeaderFooterLayout } from "./HeaderFooterLayout";
-import { fr } from "@codegouvfr/react-dsfr";
 
 type StandardLayoutProps = {
   route: Route<typeof routes.standard>;

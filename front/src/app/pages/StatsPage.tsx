@@ -1,6 +1,7 @@
-import { MainWrapper } from "react-design-system";
 import React from "react";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
+
+import { MainWrapper } from "react-design-system";
 
 const statsPageUrl =
   "https://immersion-facile.osc-fr1.scalingo.io/public/dashboard/93afb41e-949d-4677-aab3-95817f81223d";

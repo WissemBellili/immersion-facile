@@ -1,4 +1,3 @@
-import { EmailSentDto, expectToEqual } from "shared";
 import { adminSelectors } from "src/core-logic/domain/admin/admin.selectors";
 import { sentEmailsSlice } from "src/core-logic/domain/admin/sentEmails/sentEmails.slice";
 import {
@@ -6,6 +5,8 @@ import {
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
 import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import { EmailSentDto, expectToEqual } from "shared";
 
 describe("sentEmails slice", () => {
   let store: ReduxStore;

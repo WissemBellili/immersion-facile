@@ -1,4 +1,3 @@
-import { expectObjectsToMatch, SirenEstablishmentDto, SiretDto } from "shared";
 import { establishmentSelectors } from "src/core-logic/domain/establishmentPath/establishment.selectors";
 import { siretSlice } from "src/core-logic/domain/siret/siret.slice";
 import { makeStubFeatureFlags } from "src/core-logic/domain/testHelpers/test.helpers";
@@ -7,6 +6,9 @@ import {
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
 import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import { expectObjectsToMatch, SirenEstablishmentDto, SiretDto } from "shared";
+
 import { establishmentSlice, EstablishmentState } from "./establishment.slice";
 
 const establishmentFetched: SirenEstablishmentDto = {

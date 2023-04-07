@@ -1,14 +1,15 @@
 import {
-  conventionStatuses,
   ConventionDtoBuilder,
   ConventionMagicLinkPayload,
   ConventionStatus,
-  expectObjectsToMatch,
-  ImmersionAssessmentDto,
+  conventionStatuses,
   expectArraysToEqual,
+  expectObjectsToMatch,
   expectPromiseToFailWithError,
+  ImmersionAssessmentDto,
   splitCasesBetweenPassingAndFailing,
 } from "shared";
+
 import { createInMemoryUow } from "../../../adapters/primary/config/uowConfig";
 import {
   BadRequestError,

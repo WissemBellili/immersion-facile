@@ -1,7 +1,8 @@
 import React from "react";
-import { useConventionTexts } from "src/app/contents/forms/convention/textSetup";
-import { fr } from "@codegouvfr/react-dsfr";
 import { useFormContext } from "react-hook-form";
+import { fr } from "@codegouvfr/react-dsfr";
+import { useConventionTexts } from "src/app/contents/forms/convention/textSetup";
+
 import { ConventionReadDto } from "shared";
 
 type SignOnlyMessageProps = {

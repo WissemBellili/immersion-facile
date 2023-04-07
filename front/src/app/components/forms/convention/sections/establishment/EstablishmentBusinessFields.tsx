@@ -1,7 +1,6 @@
-import { Input } from "@codegouvfr/react-dsfr/Input";
 import React, { useEffect } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { ConventionDto } from "shared";
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { formConventionFieldsLabels } from "src/app/contents/forms/convention/formConvention";
 import { useFormContents } from "src/app/hooks/formContents.hooks";
 import {
@@ -9,6 +8,8 @@ import {
   useSiretRelatedField,
 } from "src/app/hooks/siret.hooks";
 import { useFeatureFlags } from "src/app/hooks/useFeatureFlags";
+
+import { ConventionDto } from "shared";
 
 export const EstablishmentBusinessFields = ({
   disabled,

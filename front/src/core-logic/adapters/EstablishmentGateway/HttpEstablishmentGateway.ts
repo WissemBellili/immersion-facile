@@ -1,5 +1,6 @@
-import { HttpClient } from "http-client";
 import { from, Observable } from "rxjs";
+import { EstablishmentGateway } from "src/core-logic/ports/EstablishmentGateway";
+
 import {
   EstablishmentTargets,
   FormEstablishmentDto,
@@ -8,7 +9,7 @@ import {
   SiretDto,
   siretSchema,
 } from "shared";
-import { EstablishmentGateway } from "src/core-logic/ports/EstablishmentGateway";
+import { HttpClient } from "http-client";
 
 export class HttpEstablishmentGateway implements EstablishmentGateway {
   constructor(private readonly httpClient: HttpClient<EstablishmentTargets>) {}

@@ -1,12 +1,13 @@
 import { AxiosInstance } from "axios";
 import { from, map, Observable } from "rxjs";
+import { SentEmailGateway } from "src/core-logic/ports/SentEmailGateway";
+
 import {
   BackOfficeJwt,
   emailRoute,
   EmailSentDto,
   emailsSentSchema,
 } from "shared";
-import { SentEmailGateway } from "src/core-logic/ports/SentEmailGateway";
 
 export class HttpSentEmailGateway implements SentEmailGateway {
   constructor(private readonly httpClient: AxiosInstance) {}

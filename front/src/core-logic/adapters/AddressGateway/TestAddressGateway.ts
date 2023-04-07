@@ -1,6 +1,7 @@
 import { Observable, Subject } from "rxjs";
-import { AddressAndPosition, LookupSearchResult } from "shared";
 import { AddressGateway } from "src/core-logic/ports/AddressGateway";
+
+import { AddressAndPosition, LookupSearchResult } from "shared";
 
 export class TestAddressGateway implements AddressGateway {
   lookupStreetAddress(): Promise<AddressAndPosition[]> {

@@ -1,27 +1,29 @@
 import axios from "axios";
 import { Point } from "geojson";
-import {
-  configureHttpClient,
-  createAxiosHandlerCreator,
-  createTargets,
-  CreateTargets,
-  HttpClient,
-  Target,
-} from "http-client";
+
 import {
   AbsoluteUrl,
   AddressAndPosition,
   AddressDto,
+  City,
+  DepartmentName,
   departmentNameToDepartmentCode,
   GeoPositionDto,
   LookupSearchResult,
   lookupSearchResultsSchema,
   OpenCageGeoSearchKey,
-  City,
-  DepartmentName,
-  StreetNumberAndAddress,
   Postcode,
+  StreetNumberAndAddress,
 } from "shared";
+import {
+  configureHttpClient,
+  createAxiosHandlerCreator,
+  CreateTargets,
+  createTargets,
+  HttpClient,
+  Target,
+} from "http-client";
+
 import { AddressGateway } from "../../../domain/immersionOffer/ports/AddressGateway";
 
 export const errorMessage = {

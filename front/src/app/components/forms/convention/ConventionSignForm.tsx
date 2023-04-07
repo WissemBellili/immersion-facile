@@ -1,10 +1,8 @@
-import { fr } from "@codegouvfr/react-dsfr";
-import { mergeDeepRight } from "ramda";
 import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { ConventionDto, ConventionReadDto } from "shared";
-import { ConventionFeedbackNotification } from "src/app/components/forms/convention/ConventionFeedbackNotification";
+import { fr } from "@codegouvfr/react-dsfr";
+import { mergeDeepRight } from "ramda";
 import { ConventionFormFields } from "src/app/components/forms/convention/ConventionFormFields";
 import { useConventionTexts } from "src/app/contents/forms/convention/textSetup";
 import { useAppSelector } from "src/app/hooks/reduxHooks";
@@ -16,6 +14,9 @@ import {
   conventionSlice,
   ConventionSubmitFeedback,
 } from "src/core-logic/domain/convention/convention.slice";
+
+import { ConventionDto, ConventionReadDto } from "shared";
+import { ConventionFeedbackNotification } from "src/app/components/forms/convention/ConventionFeedbackNotification";
 
 type ConventionSignFormProperties = {
   jwt: string;

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { fr } from "@codegouvfr/react-dsfr";
-import { ContactMethod, domElementIds, SearchImmersionResultDto } from "shared";
+import { Pagination } from "@codegouvfr/react-dsfr/Pagination";
+import { Select } from "@codegouvfr/react-dsfr/Select";
 import {
   ContactEstablishmentModal,
   useContactEstablishmentModal,
 } from "src/app/components/search/ContactEstablishmentModal";
 import { SearchResult } from "src/app/components/search/SearchResult";
-import { Pagination } from "@codegouvfr/react-dsfr/Pagination";
+
+import { ContactMethod, domElementIds, SearchImmersionResultDto } from "shared";
 import { SuccessFeedback } from "src/app/components/SuccessFeedback";
-import { Select } from "@codegouvfr/react-dsfr/Select";
 
 const getFeedBackMessage = (contactMethod?: ContactMethod) => {
   switch (contactMethod) {

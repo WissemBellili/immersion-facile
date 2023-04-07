@@ -1,10 +1,11 @@
+import React from "react";
 import { ConventionForm } from "src/app/components/forms/convention/ConventionForm";
 import { conventionInitialValuesFromUrl } from "src/app/components/forms/convention/conventionHelpers";
+import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
 import { routes } from "src/app/routes/routes";
 import { Route } from "type-route";
+
 import { ErrorPage } from "../error/ErrorPage";
-import React from "react";
-import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
 
 export type ConventionImmersionForExternalsRoute = Route<
   typeof routes.conventionImmersionForExternals

@@ -1,5 +1,6 @@
-import { CreateTargets, Target } from "http-client";
 import { AbsoluteUrl } from "shared";
+import { CreateTargets, Target } from "http-client";
+
 import { BearerToken } from "../../../domain/peConnect/dto/BearerToken";
 import { PeConnectAdvisorsKind } from "../../../domain/peConnect/dto/PeConnectAdvisor.dto";
 

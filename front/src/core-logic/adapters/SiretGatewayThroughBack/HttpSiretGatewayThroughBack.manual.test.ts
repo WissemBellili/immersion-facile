@@ -1,4 +1,6 @@
 import { firstValueFrom } from "rxjs";
+import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
+
 import {
   apiSirenNotAvailableSiret,
   conflictErrorSiret,
@@ -7,7 +9,7 @@ import {
   GetSiretInfoError,
   tooManySirenRequestsSiret,
 } from "shared";
-import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
+
 import { HttpSiretGatewayThroughBack } from "./HttpSiretGatewayThroughBack";
 import { SimulatedSiretGatewayThroughBack } from "./SimulatedSiretGatewayThroughBack";
 

@@ -1,6 +1,8 @@
 import { AgencyDto } from "shared";
+
 import { InclusionConnectedUser } from "../../domain/dashboard/entities/InclusionConnectedUser";
 import { InclusionConnectedUserQueries } from "../../domain/dashboard/port/InclusionConnectedUserQueries";
+
 import { InMemoryAuthenticatedUserRepository } from "./InMemoryAuthenticatedUserRepository";
 
 export class InMemoryInclusionConnectedUserQueries

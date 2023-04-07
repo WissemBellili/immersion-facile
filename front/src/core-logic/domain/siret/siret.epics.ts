@@ -1,5 +1,4 @@
 import { filter, iif, map, Observable, of, switchMap } from "rxjs";
-import { GetSiretInfo, GetSiretInfoError, SiretDto, siretSchema } from "shared";
 import {
   SiretAction,
   siretSlice,
@@ -7,6 +6,8 @@ import {
 import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
 import { catchEpicError } from "src/core-logic/storeConfig/catchEpicError";
 import { AppEpic } from "src/core-logic/storeConfig/redux.helpers";
+
+import { GetSiretInfo, GetSiretInfoError, SiretDto, siretSchema } from "shared";
 
 const shouldTriggerSearch = (candidate: string) => {
   try {

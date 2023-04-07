@@ -1,9 +1,5 @@
 import React from "react";
-import { Loader, MainWrapper } from "react-design-system";
-import {
-  ConventionMagicLinkPayload,
-  decodeMagicLinkJwtWithoutSignatureCheck,
-} from "shared";
+import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { ImmersionAssessmentForm } from "src/app/components/forms/immersion-assessment/ImmersionAssessmentForm";
 import { ImmersionDescription } from "src/app/components/forms/immersion-assessment/ImmersionDescription";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
@@ -11,7 +7,12 @@ import { useConvention } from "src/app/hooks/convention.hooks";
 import { ShowErrorOrRedirectToRenewMagicLink } from "src/app/pages/convention/ShowErrorOrRedirectToRenewMagicLink";
 import { routes } from "src/app/routes/routes";
 import { Route } from "type-route";
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
+
+import {
+  ConventionMagicLinkPayload,
+  decodeMagicLinkJwtWithoutSignatureCheck,
+} from "shared";
+import { Loader, MainWrapper } from "react-design-system";
 
 type ImmersionAssessmentRoute = Route<typeof routes.immersionAssessment>;
 

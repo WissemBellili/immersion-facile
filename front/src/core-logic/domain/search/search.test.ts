@@ -1,4 +1,3 @@
-import { expectToEqual, SearchImmersionResultDto } from "shared";
 import { searchSelectors } from "src/core-logic/domain/search/search.selectors";
 import {
   searchSlice,
@@ -9,6 +8,8 @@ import {
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
 import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import { expectToEqual, SearchImmersionResultDto } from "shared";
 
 // prettier-ignore
 const formSearchResult1 = { siret: "form1", rome: "A", voluntaryToImmersion: true} as SearchImmersionResultDto

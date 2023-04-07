@@ -1,11 +1,12 @@
 import React from "react";
-import { Input } from "@codegouvfr/react-dsfr/Input";
-import { fr } from "@codegouvfr/react-dsfr";
 import { useFormContext } from "react-hook-form";
-import { ConventionDto } from "shared";
+import { fr } from "@codegouvfr/react-dsfr";
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { ConventionEmailWarning } from "src/app/components/forms/convention/ConventionEmailWarning";
 import { formConventionFieldsLabels } from "src/app/contents/forms/convention/formConvention";
 import { useFormContents } from "src/app/hooks/formContents.hooks";
+
+import { ConventionDto } from "shared";
 
 type EstablishmentRepresentativeFieldsProperties = {
   disabled: boolean | undefined;

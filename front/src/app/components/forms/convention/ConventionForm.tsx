@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import {
-  ConventionDto,
-  ConventionMagicLinkPayload,
-  ConventionReadDto,
-  conventionWithoutExternalIdSchema,
-  decodeMagicLinkJwtWithoutSignatureCheck,
-  hasBeneficiaryCurrentEmployer,
-  isBeneficiaryMinor,
-  isEstablishmentTutorIsEstablishmentRepresentative,
-  isPeConnectIdentity,
-} from "shared";
-import { ConventionFeedbackNotification } from "src/app/components/forms/convention/ConventionFeedbackNotification";
 import { ConventionFormFields } from "src/app/components/forms/convention/ConventionFormFields";
 import {
   ConventionPresentation,
@@ -31,6 +19,19 @@ import { authSelectors } from "src/core-logic/domain/auth/auth.selectors";
 import { conventionSelectors } from "src/core-logic/domain/convention/convention.selectors";
 import { conventionSlice } from "src/core-logic/domain/convention/convention.slice";
 import { useStyles } from "tss-react/dsfr";
+
+import {
+  ConventionDto,
+  ConventionMagicLinkPayload,
+  ConventionReadDto,
+  conventionWithoutExternalIdSchema,
+  decodeMagicLinkJwtWithoutSignatureCheck,
+  hasBeneficiaryCurrentEmployer,
+  isBeneficiaryMinor,
+  isEstablishmentTutorIsEstablishmentRepresentative,
+  isPeConnectIdentity,
+} from "shared";
+import { ConventionFeedbackNotification } from "src/app/components/forms/convention/ConventionFeedbackNotification";
 
 const useClearConventionSubmitFeedbackOnUnmount = () => {
   const dispatch = useDispatch();

@@ -38,7 +38,7 @@ module.exports = {
         ecmaVersion: 2020,
         sourceType: "module",
       },
-      plugins: ["@typescript-eslint" /*'rxjs'*/],
+      plugins: ["@typescript-eslint", "simple-import-sort"],
       rules: {
         ...require("./eslint.rules"),
         ...require("./typescript-eslint.rules"),

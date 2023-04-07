@@ -1,8 +1,9 @@
 import axios from "axios";
+
 import { createAxiosHandlerCreator } from "./adapters/createAxiosHandlerCreator";
 import {
-  CreateTargets,
   configureHttpClient,
+  CreateTargets,
   Target,
 } from "./configureHttpClient";
 

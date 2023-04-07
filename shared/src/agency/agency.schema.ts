@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { absoluteUrlSchema } from "../AbsoluteUrl";
 import { addressSchema } from "../address/address.schema";
 import { geoPositionSchema } from "../geoPosition/geoPosition.schema";
@@ -11,6 +12,7 @@ import {
   zStringPossiblyEmpty,
   zTrimmedString,
 } from "../zodUtils";
+
 import {
   AgencyDto,
   AgencyId,

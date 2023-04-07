@@ -1,8 +1,9 @@
-import { ConventionDto, isBeneficiaryStudent } from "shared";
 import {
   ConventionFormKeysInUrl,
   ConventionInUrl,
 } from "src/app/routes/route-params";
+
+import { ConventionDto, isBeneficiaryStudent } from "shared";
 
 const commonKeysToWatch: ConventionFormKeysInUrl[] = [
   "email",

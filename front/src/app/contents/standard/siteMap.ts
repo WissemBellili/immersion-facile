@@ -1,5 +1,6 @@
-import { domElementIds } from "shared";
 import { routes } from "src/app/routes/routes";
+
+import { domElementIds } from "shared";
 
 // TODO replace with react dsfr link props type
 type SiteMapLink = {

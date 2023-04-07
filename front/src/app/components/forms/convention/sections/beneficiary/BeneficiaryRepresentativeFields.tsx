@@ -1,14 +1,14 @@
-import { Input } from "@codegouvfr/react-dsfr/Input";
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-
-import { ConventionReadDto } from "shared";
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { ConventionEmailWarning } from "src/app/components/forms/convention/ConventionEmailWarning";
 import { formConventionFieldsLabels } from "src/app/contents/forms/convention/formConvention";
 import {
   makeFieldError,
   useFormContents,
 } from "src/app/hooks/formContents.hooks";
+
+import { ConventionReadDto } from "shared";
 
 type BeneficiaryRepresentativeFieldsProps = { disabled?: boolean };
 

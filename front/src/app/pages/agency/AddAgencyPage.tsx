@@ -1,7 +1,8 @@
 import React from "react";
-import { MainWrapper, PageHeader } from "react-design-system";
 import { AddAgencyForm } from "src/app/components/forms/agency/AddAgencyForm";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
+
+import { MainWrapper, PageHeader } from "react-design-system";
 
 export const AddAgencyPage = () => (
   <HeaderFooterLayout>

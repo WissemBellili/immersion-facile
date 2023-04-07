@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { v4 as uuidV4 } from "uuid";
-import { Button } from "@codegouvfr/react-dsfr/Button";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { fr } from "@codegouvfr/react-dsfr";
+import { Button } from "@codegouvfr/react-dsfr/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ErrorNotifications } from "react-design-system";
+import {
+  AgencyFormCommonFields,
+  AgencyLogoUpload,
+} from "src/app/components/forms/agency/AgencyFormCommonFields";
+import { formAgencyFieldsLabels } from "src/app/contents/forms/agency/formAgency";
+import {
+  formErrorsToFlatErrors,
+  useFormContents,
+} from "src/app/hooks/formContents.hooks";
+import { agencyGateway } from "src/config/dependencies";
+import { AgencySubmitFeedback } from "src/core-logic/domain/agenciesAdmin/agencyAdmin.slice";
+import { v4 as uuidV4 } from "uuid";
+
 import {
   AgencyDto,
   AgencyKind,
@@ -12,20 +24,9 @@ import {
   domElementIds,
   toDotNotation,
 } from "shared";
-import {
-  AgencyFormCommonFields,
-  AgencyLogoUpload,
-} from "src/app/components/forms/agency/AgencyFormCommonFields";
+import { ErrorNotifications } from "react-design-system";
 import { agencySubmitMessageByKind } from "src/app/components/agency/AgencySubmitFeedback";
 import { SubmitFeedbackNotification } from "src/app/components/SubmitFeedbackNotification";
-import { formAgencyFieldsLabels } from "src/app/contents/forms/agency/formAgency";
-import {
-  formErrorsToFlatErrors,
-  useFormContents,
-} from "src/app/hooks/formContents.hooks";
-import { agencyGateway } from "src/config/dependencies";
-import { AgencySubmitFeedback } from "src/core-logic/domain/agenciesAdmin/agencyAdmin.slice";
-import { fr } from "@codegouvfr/react-dsfr";
 
 type CreateAgencyInitialValues = Omit<CreateAgencyDto, "kind"> & {
   kind: AgencyKind | "";

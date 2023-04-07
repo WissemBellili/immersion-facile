@@ -1,4 +1,5 @@
-import { createTargets, CreateTargets, Target } from "http-client";
+import { CreateTargets, createTargets, Target } from "http-client";
+
 import { WithAuthorization } from "../admin/admin.dto";
 
 const getAgencyDashboardUrl = "/inclusion-connected/agency-dashboard";

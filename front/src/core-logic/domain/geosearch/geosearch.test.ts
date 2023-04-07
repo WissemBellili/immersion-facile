@@ -1,14 +1,16 @@
 import {
+  createTestStore,
+  TestDependencies,
+} from "src/core-logic/storeConfig/createTestStore";
+import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import {
   expectArraysToEqual,
   expectObjectsToMatch,
   expectToEqual,
   LookupSearchResult,
 } from "shared";
-import {
-  createTestStore,
-  TestDependencies,
-} from "src/core-logic/storeConfig/createTestStore";
-import { ReduxStore } from "src/core-logic/storeConfig/store";
+
 import { GeoSearchFeedback, geosearchSlice } from "./geosearch.slice";
 
 describe("Geosearch epic", () => {

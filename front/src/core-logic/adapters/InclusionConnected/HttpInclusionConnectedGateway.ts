@@ -1,11 +1,12 @@
-import { HttpClient } from "http-client";
 import { from, map, Observable } from "rxjs";
+import { InclusionConnectedGateway } from "src/core-logic/ports/InclusionConnectedGateway";
+
 import {
   AbsoluteUrl,
   absoluteUrlSchema,
   InclusionConnectedAllowedTargets,
 } from "shared";
-import { InclusionConnectedGateway } from "src/core-logic/ports/InclusionConnectedGateway";
+import { HttpClient } from "http-client";
 
 export class HttpInclusionConnectedGateway
   implements InclusionConnectedGateway

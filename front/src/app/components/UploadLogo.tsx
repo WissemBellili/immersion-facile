@@ -1,8 +1,9 @@
 import * as React from "react";
-import { File } from "react-design-system";
-import { AbsoluteUrl } from "shared";
 import { technicalGateway } from "src/config/dependencies";
+
+import { AbsoluteUrl } from "shared";
 import { domElementIds } from "shared";
+import { File } from "react-design-system";
 
 interface UploadLogoProps {
   label: string;

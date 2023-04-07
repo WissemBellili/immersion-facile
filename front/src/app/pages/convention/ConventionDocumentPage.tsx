@@ -1,6 +1,14 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import React, { useEffect } from "react";
-import { Loader, MainWrapper } from "react-design-system";
+import { useDispatch } from "react-redux";
+import { fr } from "@codegouvfr/react-dsfr";
+import { useConvention } from "src/app/hooks/convention.hooks";
+import { useAppSelector } from "src/app/hooks/reduxHooks";
+import { ShowErrorOrRedirectToRenewMagicLink } from "src/app/pages/convention/ShowErrorOrRedirectToRenewMagicLink";
+import { routes } from "src/app/routes/routes";
+import { agencyInfoSelectors } from "src/core-logic/domain/agencyInfo/agencyInfo.selectors";
+import { agencyInfoSlice } from "src/core-logic/domain/agencyInfo/agencyInfo.slice";
+import { Route } from "type-route";
+
 import {
   ConventionMagicLinkJwt,
   ConventionMagicLinkPayload,
@@ -9,17 +17,11 @@ import {
   prettyPrintSchedule,
   toDisplayedDate,
 } from "shared";
-import { useConvention } from "src/app/hooks/convention.hooks";
-import { ShowErrorOrRedirectToRenewMagicLink } from "src/app/pages/convention/ShowErrorOrRedirectToRenewMagicLink";
-import { routes } from "src/app/routes/routes";
-import { Route } from "type-route";
+import { Loader, MainWrapper } from "react-design-system";
 import { ConventionDocument } from "react-design-system";
-import { useDispatch } from "react-redux";
-import { agencyInfoSlice } from "src/core-logic/domain/agencyInfo/agencyInfo.slice";
-import { useAppSelector } from "src/app/hooks/reduxHooks";
-import { agencyInfoSelectors } from "src/core-logic/domain/agencyInfo/agencyInfo.selectors";
-import logoRf from "/assets/img/logo-rf.svg";
+
 import logoIf from "/assets/img/logo-if.svg";
+import logoRf from "/assets/img/logo-rf.svg";
 
 const throwOnMissingSignDate = (signedAt: string | undefined): string => {
   if (!signedAt) throw new Error("Signature date is missing.");

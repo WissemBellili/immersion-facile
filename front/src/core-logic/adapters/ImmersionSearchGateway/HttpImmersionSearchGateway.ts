@@ -1,4 +1,6 @@
 import { from, map, Observable } from "rxjs";
+import { ImmersionSearchGateway } from "src/core-logic/ports/ImmersionSearchGateway";
+
 import {
   ContactEstablishmentRequestDto,
   contactEstablishmentRoute,
@@ -8,15 +10,13 @@ import {
   SearchImmersionResultDto,
   searchImmersionsSchema,
 } from "shared";
-
 import {
-  createTargets,
   CreateTargets,
+  createTargets,
   HttpClient,
   HttpResponse,
   Target,
 } from "http-client";
-import { ImmersionSearchGateway } from "src/core-logic/ports/ImmersionSearchGateway";
 export class HttpImmersionSearchGateway implements ImmersionSearchGateway {
   constructor(private readonly httpClient: HttpClient<SearchResultsTargets>) {}
 

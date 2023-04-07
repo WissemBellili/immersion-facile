@@ -1,13 +1,14 @@
 import React from "react";
+import { fr } from "@codegouvfr/react-dsfr";
 
 import {
+  displayEmergencyContactInfos,
+  prettyPrintSchedule,
   ScheduleDto,
   toDisplayedDate,
-  prettyPrintSchedule,
-  displayEmergencyContactInfos,
 } from "shared";
+
 import { ColField, FieldsAndTitle } from "./types";
-import { fr } from "@codegouvfr/react-dsfr";
 
 export const signToBooleanDisplay = (value: string | undefined) =>
   value ? `✅ (${toDisplayedDate(new Date(value))})` : "❌";

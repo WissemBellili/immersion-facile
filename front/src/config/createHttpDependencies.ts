@@ -1,22 +1,10 @@
-import { configureHttpClient, createAxiosHandlerCreator } from "http-client";
-import {
-  createManagedAxiosInstance,
-  AdminTargets,
-  adminTargets,
-  establishmentTargets,
-  EstablishmentTargets,
-  AddressTargets,
-  addressTargets,
-  inclusionConnectedAllowedTargets,
-  InclusionConnectedAllowedTargets,
-} from "shared";
 import { createCommonDependencies } from "src/config/createCommonDependencies";
 import type { Dependencies } from "src/config/dependencies";
 import { HttpAddressGateway } from "src/core-logic/adapters/AddressGateway/HttpAddressGateway";
 import { HttpAdminGateway } from "src/core-logic/adapters/AdminGateway/HttpAdminGateway";
 import {
-  agencyTargets,
   AgencyTargets,
+  agencyTargets,
   HttpAgencyGateway,
 } from "src/core-logic/adapters/AgencyGateway/HttpAgencyGateway";
 import { HttpImmersionAssessmentGateway } from "src/core-logic/adapters/AssessmentGateway/HttpImmersionAssessmentGateway";
@@ -32,6 +20,19 @@ import { HttpInclusionConnectedGateway } from "src/core-logic/adapters/Inclusion
 import { HttpRomeAutocompleteGateway } from "src/core-logic/adapters/RomeAutocompleteGateway/HttpRomeAutocompleteGateway";
 import { HttpSiretGatewayThroughBack } from "src/core-logic/adapters/SiretGatewayThroughBack/HttpSiretGatewayThroughBack";
 import { HttpTechnicalGateway } from "src/core-logic/adapters/TechnicalGateway/HttpTechnicalGateway";
+
+import {
+  AddressTargets,
+  addressTargets,
+  AdminTargets,
+  adminTargets,
+  createManagedAxiosInstance,
+  EstablishmentTargets,
+  establishmentTargets,
+  InclusionConnectedAllowedTargets,
+  inclusionConnectedAllowedTargets,
+} from "shared";
+import { configureHttpClient, createAxiosHandlerCreator } from "http-client";
 
 export const createHttpDependencies = (): Dependencies => {
   const axiosOnSlashApi = createManagedAxiosInstance({ baseURL: "/api" });

@@ -1,9 +1,10 @@
 import React from "react";
-import { MainWrapper, PageHeader } from "react-design-system";
+import { EstablishmentCreationForm } from "src/app/components/forms/establishment/EstablishmentCreationForm";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
 import { routes } from "src/app/routes/routes";
 import { Route } from "type-route";
-import { EstablishmentCreationForm } from "src/app/components/forms/establishment/EstablishmentCreationForm";
+
+import { MainWrapper, PageHeader } from "react-design-system";
 
 export const EstablishmentFormPage = ({
   route,

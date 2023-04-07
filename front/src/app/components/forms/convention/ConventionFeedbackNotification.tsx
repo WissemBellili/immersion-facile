@@ -1,5 +1,12 @@
-import { values } from "ramda";
 import React, { ReactNode } from "react";
+import { fr } from "@codegouvfr/react-dsfr";
+import { values } from "ramda";
+import {
+  ConventionFeedbackKind,
+  ConventionSubmitFeedback,
+} from "src/core-logic/domain/convention/convention.slice";
+import { useStyles } from "tss-react/dsfr";
+
 import {
   immersionFacileContactEmail,
   Signatories,
@@ -7,12 +14,6 @@ import {
   SignatoryRole,
 } from "shared";
 import { SubmitFeedbackNotification } from "src/app/components/SubmitFeedbackNotification";
-import {
-  ConventionSubmitFeedback,
-  ConventionFeedbackKind,
-} from "src/core-logic/domain/convention/convention.slice";
-import { fr } from "@codegouvfr/react-dsfr";
-import { useStyles } from "tss-react/dsfr";
 
 type ConventionSubmitFeedbackNotificationProps = {
   submitFeedback: ConventionSubmitFeedback;

@@ -1,9 +1,11 @@
 import { Router } from "express";
+
 import {
   agenciesRoute,
   agencyImmersionFacileIdRoute,
   agencyPublicInfoByIdRoute,
 } from "shared";
+
 import type { AppDependencies } from "../../config/createAppDependencies";
 import { sendHttpResponse } from "../../helpers/sendHttpResponse";
 

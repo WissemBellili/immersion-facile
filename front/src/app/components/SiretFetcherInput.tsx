@@ -1,9 +1,10 @@
-import { useEstablishmentSiret } from "src/app/hooks/siret.hooks";
-import { ImmersionTextField } from "react-design-system";
 import React from "react";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { useEstablishmentSiret } from "src/app/hooks/siret.hooks";
+
 import { domElementIds } from "shared";
+import { ImmersionTextField } from "react-design-system";
 
 type SiretFetcherInputProps = {
   placeholder: string;

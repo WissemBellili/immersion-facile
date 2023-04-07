@@ -1,6 +1,8 @@
-import { createTargets, CreateTargets, Target } from "http-client";
+import { CreateTargets, createTargets, Target } from "http-client";
+
 import { ContactEstablishmentRequestDto } from "../contactEstablishmentRequest/contactEstablishmentRequest.dto";
 import { SearchImmersionQueryParamsDto } from "../searchImmersion/SearchImmersionQueryParams.dto";
+
 import { contactEstablishmentRoute, immersionOffersRoute } from "./routes";
 
 const getSearchResultsByGroupUrl = "/group-offers/:slug";

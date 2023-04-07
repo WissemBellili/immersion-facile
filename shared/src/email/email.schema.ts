@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import type { EmailType, TemplatedEmail } from "./email";
 
 const emailTypeSchema = z.string() as z.Schema<EmailType>;

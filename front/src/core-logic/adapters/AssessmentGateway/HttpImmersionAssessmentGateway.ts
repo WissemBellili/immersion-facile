@@ -1,10 +1,11 @@
 import { AxiosInstance } from "axios";
 import { from, Observable } from "rxjs";
-import { immersionAssessmentRoute } from "shared";
 import {
   AssessmentAndJwt,
   ImmersionAssessmentGateway,
 } from "src/core-logic/ports/ImmersionAssessmentGateway";
+
+import { immersionAssessmentRoute } from "shared";
 
 export class HttpImmersionAssessmentGateway
   implements ImmersionAssessmentGateway

@@ -1,8 +1,9 @@
 import { GetExportableParams } from "shared";
+import { ExportData } from "../../../domain/backoffice/useCases/ExportData";
+
 import { createInMemoryUow } from "../../../adapters/primary/config/uowConfig";
 import { InMemoryUowPerformer } from "../../../adapters/secondary/InMemoryUowPerformer";
 import { InMemoryExportGateway } from "../../../adapters/secondary/reporting/InMemoryExportGateway";
-import { ExportData } from "../../../domain/backoffice/useCases/ExportData";
 
 describe("ExportDataAsExcel", () => {
   it("Should save data the exported data record", async () => {

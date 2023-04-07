@@ -1,4 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "src/core-logic/storeConfig/store";
+
 import {
   ConventionDto,
   ConventionField,
@@ -6,7 +8,6 @@ import {
   Signatory,
   SignatoryRole,
 } from "shared";
-import type { RootState } from "src/core-logic/storeConfig/store";
 
 const conventionState = (state: RootState) => state.convention;
 

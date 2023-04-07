@@ -1,13 +1,15 @@
 import { Pool } from "pg";
+
 import { random, sleep } from "shared";
+
 import { UpdateEstablishmentsFromSirenApiScript } from "../../../domain/immersionOffer/useCases/UpdateEstablishmentsFromSirenApiScript";
 import { createLogger } from "../../../utils/logger";
 import { PipelineStats } from "../../../utils/pipelineStats";
 import {
-  createHttpAddressClient,
-  HttpAddressGateway,
   addressesExternalTargets,
   AddressesTargets,
+  createHttpAddressClient,
+  HttpAddressGateway,
 } from "../../secondary/addressGateway/HttpAddressGateway";
 import {
   defaultMaxBackoffPeriodMs,
@@ -19,6 +21,7 @@ import { RealTimeGateway } from "../../secondary/core/TimeGateway/RealTimeGatewa
 import { PgEstablishmentAggregateRepository } from "../../secondary/pg/PgEstablishmentAggregateRepository";
 import { HttpSirenGateway } from "../../secondary/sirene/HttpSirenGateway";
 import { AppConfig } from "../config/appConfig";
+
 import { handleEndOfScriptNotification } from "./handleEndOfScriptNotification";
 
 const logger = createLogger(__filename);

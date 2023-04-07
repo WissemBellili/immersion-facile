@@ -1,5 +1,7 @@
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { from, Observable } from "rxjs";
+import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
+
 import {
   establishmentTargets,
   getSiretIfNotSavedRoute,
@@ -15,7 +17,6 @@ import {
   siretRoute,
   tooManiSirenRequestsSiretErrorMessage,
 } from "shared";
-import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
 
 export class HttpSiretGatewayThroughBack implements SiretGatewayThroughBack {
   constructor(private readonly httpClient: AxiosInstance) {}

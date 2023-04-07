@@ -1,15 +1,15 @@
-import { Input } from "@codegouvfr/react-dsfr/Input";
 import React from "react";
-
+import { useFormContext } from "react-hook-form";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
-import { useFormContext } from "react-hook-form";
-import { ConventionDto } from "shared";
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { formConventionFieldsLabels } from "src/app/contents/forms/convention/formConvention";
 import {
   makeFieldError,
   useFormContents,
 } from "src/app/hooks/formContents.hooks";
+
+import { ConventionDto } from "shared";
 
 type BeneficiaryCurrentEmployerFieldsProperties = {
   disabled: boolean | undefined;

@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { z } from "zod";
+
 import {
   EstablishmentBatchReport,
   EstablishmentCSVRow,
@@ -6,7 +8,6 @@ import {
   FormEstablishmentDto,
 } from "shared";
 import { SubmitFeedBack } from "src/core-logic/domain/SubmitFeedback";
-import { z } from "zod";
 
 export type AddFormEstablishmentBatchFeedback = SubmitFeedBack<"success">;
 export type FormEstablishmentDtoWithErrors = FormEstablishmentDto & {

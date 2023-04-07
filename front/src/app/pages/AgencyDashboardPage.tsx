@@ -1,15 +1,16 @@
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { MetabaseView } from "src/app/components/MetabaseView";
-import { SubmitFeedbackNotification } from "src/app/components/SubmitFeedbackNotification";
 import { useAppSelector } from "src/app/hooks/reduxHooks";
 import { authSelectors } from "src/core-logic/domain/auth/auth.selectors";
 import { authSlice } from "src/core-logic/domain/auth/auth.slice";
 import { inclusionConnectedSelectors } from "src/core-logic/domain/inclusionConnected/inclusionConnected.selectors";
 import { inclusionConnectedSlice } from "src/core-logic/domain/inclusionConnected/inclusionConnected.slice";
+
+import { SubmitFeedbackNotification } from "src/app/components/SubmitFeedbackNotification";
 
 export const AgencyDashboardPage = () => {
   // the Layout (Header, Footer...) is given by InclusionConnectedPrivateRoute (higher order component)

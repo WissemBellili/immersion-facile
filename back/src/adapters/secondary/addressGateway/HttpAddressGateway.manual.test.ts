@@ -12,11 +12,11 @@ import { AddressGateway } from "../../../domain/immersionOffer/ports/AddressGate
 import { AppConfig } from "../../primary/config/appConfig";
 
 import {
-  createHttpAddressClient,
-  HttpAddressGateway,
-  errorMessage,
-  AddressesTargets,
   addressesExternalTargets,
+  AddressesTargets,
+  createHttpAddressClient,
+  errorMessage,
+  HttpAddressGateway,
 } from "./HttpAddressGateway";
 
 const resultFromApiAddress = {

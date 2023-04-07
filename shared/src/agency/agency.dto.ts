@@ -1,9 +1,9 @@
-import { RequireField } from "../utils";
 import { AbsoluteUrl } from "../AbsoluteUrl";
 import { AddressDto, DepartmentCode } from "../address/address.dto";
 import { GeoPositionDto } from "../geoPosition/geoPosition.dto";
-import { Flavor } from "../typeFlavors";
 import { SiretDto } from "../siret/siret";
+import { Flavor } from "../typeFlavors";
+import { RequireField } from "../utils";
 
 export type AgencyStatus = (typeof allAgencyStatuses)[number];
 export const allAgencyStatuses = [

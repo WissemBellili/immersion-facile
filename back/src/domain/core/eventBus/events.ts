@@ -8,6 +8,7 @@ import {
   ImmersionAssessmentDto,
   WithConventionId,
 } from "shared";
+
 import { RenewMagicLinkPayload } from "../../convention/useCases/notifications/DeliverRenewedMagicLink";
 import { ConventionRequiresModificationPayload } from "../../convention/useCases/notifications/NotifyBeneficiaryAndEnterpriseThatApplicationNeedsModification";
 import { IdentityProvider } from "../../generic/OAuth/entities/OngoingOAuth";

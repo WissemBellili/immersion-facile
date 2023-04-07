@@ -1,12 +1,13 @@
 import { Pool } from "pg";
+
 import { UpdateAllPeAgencies } from "../../../domain/convention/useCases/agencies/UpdateAllPeAgencies";
 import { noRateLimit } from "../../../domain/core/ports/RateLimiter";
 import { noRetries } from "../../../domain/core/ports/RetryStrategy";
 import {
-  createHttpAddressClient,
-  HttpAddressGateway,
   addressesExternalTargets,
   AddressesTargets,
+  createHttpAddressClient,
+  HttpAddressGateway,
 } from "../../secondary/addressGateway/HttpAddressGateway";
 import { ConsoleAppLogger } from "../../secondary/core/ConsoleAppLogger";
 import { UuidV4Generator } from "../../secondary/core/UuidGeneratorImplementations";

@@ -1,6 +1,7 @@
 import React from "react";
-import { useStyles } from "tss-react/dsfr";
 import { fr } from "@codegouvfr/react-dsfr";
+import { useStyles } from "tss-react/dsfr";
+
 import "./ConventionRequirements.scss";
 
 const componentName = "im-convention-requirements";

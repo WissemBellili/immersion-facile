@@ -1,5 +1,6 @@
-import { FeatureFlags } from "shared";
 import { StoreAndDeps } from "src/core-logic/storeConfig/createTestStore";
+
+import { FeatureFlags } from "shared";
 
 type ScenarioUnitTest = (storeAndDeps: StoreAndDeps) => void;
 

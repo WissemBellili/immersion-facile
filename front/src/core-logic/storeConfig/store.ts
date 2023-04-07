@@ -22,6 +22,7 @@ import { searchEpics } from "src/core-logic/domain/search/search.epics";
 import { searchSlice } from "src/core-logic/domain/search/search.slice";
 import { siretEpics } from "src/core-logic/domain/siret/siret.epics";
 import { siretSlice } from "src/core-logic/domain/siret/siret.slice";
+
 import { agenciesEpics } from "../domain/agenciesConvention/agencies.epics";
 import { agenciesSlice } from "../domain/agenciesConvention/agencies.slice";
 import { agencyInfoEpics } from "../domain/agencyInfo/agencyInfo.epics";

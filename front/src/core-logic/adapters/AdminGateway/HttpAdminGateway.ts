@@ -1,5 +1,6 @@
-import { HttpClient } from "http-client";
 import { from, Observable } from "rxjs";
+import { AdminGateway } from "src/core-logic/ports/AdminGateway";
+
 import {
   AbsoluteUrl,
   absoluteUrlSchema,
@@ -11,7 +12,7 @@ import {
   GetDashboardParams,
   UserAndPassword,
 } from "shared";
-import { AdminGateway } from "src/core-logic/ports/AdminGateway";
+import { HttpClient } from "http-client";
 
 export class HttpAdminGateway implements AdminGateway {
   constructor(private readonly httpClient: HttpClient<AdminTargets>) {}

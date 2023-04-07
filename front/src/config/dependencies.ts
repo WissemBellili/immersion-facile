@@ -1,6 +1,7 @@
 import { SchedulerLike } from "rxjs";
 import { createHttpDependencies } from "src/config/createHttpDependencies";
 import { createInMemoryDependencies } from "src/config/createInMemoryDependencies";
+import { ENV } from "src/config/environmentVariables";
 import { AddressGateway } from "src/core-logic/ports/AddressGateway";
 import { AdminGateway } from "src/core-logic/ports/AdminGateway";
 import { AgencyGateway } from "src/core-logic/ports/AgencyGateway";
@@ -16,7 +17,6 @@ import { SentEmailGateway } from "src/core-logic/ports/SentEmailGateway";
 import { SiretGatewayThroughBack } from "src/core-logic/ports/SiretGatewayThroughBack";
 import { TechnicalGateway } from "src/core-logic/ports/TechnicalGateway";
 import { createStore } from "src/core-logic/storeConfig/store";
-import { ENV } from "src/config/environmentVariables";
 
 export type Dependencies = {
   adminGateway: AdminGateway;

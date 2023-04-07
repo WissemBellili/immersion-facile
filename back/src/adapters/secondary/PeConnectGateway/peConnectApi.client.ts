@@ -1,14 +1,16 @@
+import { AbsoluteUrl, queryParamsAsString } from "shared";
 import {
   configureHttpClient,
   createTargets,
   HandlerCreator,
   HttpClient,
 } from "http-client";
-import { AbsoluteUrl, queryParamsAsString } from "shared";
+
 import { AccessTokenDto } from "../../../domain/peConnect/dto/AccessToken.dto";
 import { PeConnectAdvisorDto } from "../../../domain/peConnect/dto/PeConnectAdvisor.dto";
 import { PeConnectUserDto } from "../../../domain/peConnect/dto/PeConnectUser.dto";
 import { AppConfig } from "../../primary/config/appConfig";
+
 import {
   ExternalAccessToken,
   ExternalPeConnectAdvisor,

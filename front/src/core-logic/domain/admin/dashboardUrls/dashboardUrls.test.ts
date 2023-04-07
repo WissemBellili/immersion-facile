@@ -1,4 +1,3 @@
-import { AbsoluteUrl, expectObjectsToMatch } from "shared";
 import { adminSelectors } from "src/core-logic/domain/admin/admin.selectors";
 import {
   DashboardUrls,
@@ -9,6 +8,8 @@ import {
   TestDependencies,
 } from "src/core-logic/storeConfig/createTestStore";
 import { ReduxStore } from "src/core-logic/storeConfig/store";
+
+import { AbsoluteUrl, expectObjectsToMatch } from "shared";
 
 describe("dashboardUrls slice", () => {
   let store: ReduxStore;
