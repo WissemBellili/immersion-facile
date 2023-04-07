@@ -113,6 +113,7 @@ const SearchResultComponent = ({
                   href={getMapsLink(establishment)}
                   target="_blank"
                   className={cx(`${componentName}__location-link`)}
+                  rel="noreferrer"
                 >
                   {addressDtoToString(address).toLocaleLowerCase()}
                 </a>{" "}
@@ -128,7 +129,11 @@ const SearchResultComponent = ({
               </li>
               {website && (
                 <li>
-                  <a href={toAbsoluteUrl(website)} target="_blank">
+                  <a
+                    href={toAbsoluteUrl(website)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Voir le site de l'entreprise
                   </a>
                 </li>

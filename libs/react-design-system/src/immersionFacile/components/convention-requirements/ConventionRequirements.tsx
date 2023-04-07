@@ -39,6 +39,7 @@ export const ConventionRequirements = () => {
               <a
                 href="https://aide.immersion-facile.beta.gouv.fr/fr/article/je-nai-pas-de-structure-daccompagnement-et-je-veux-faire-une-immersion-1x15rdp/"
                 target="_blank"
+                rel="noreferrer"
               >
                 retrouvez nos conseils ici
               </a>

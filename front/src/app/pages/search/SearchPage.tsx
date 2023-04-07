@@ -287,6 +287,7 @@ export const SearchPage = ({
                               href={`https://candidat.pole-emploi.fr/marche-du-travail/fichemetierrome?codeRome=${routeParams.rome}`}
                               target="_blank"
                               className={fr.cx("fr-text--bold")}
+                              rel="noreferrer"
                             >
                               {routeParams.romeLabel}
                             </a>

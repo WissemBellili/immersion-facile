@@ -4,6 +4,7 @@ module.exports = {
   "no-return-await": "off",
   "require-await": "off",
   "no-console": "error",
+  "react/no-unescaped-entities": "off",
 };
 
 const toAdd = {

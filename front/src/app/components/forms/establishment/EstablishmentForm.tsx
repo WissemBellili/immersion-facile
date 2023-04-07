@@ -103,7 +103,11 @@ export const EstablishmentForm = ({
       </p>
       <p>
         En référençant votre entreprise, vous rejoignez la communauté{" "}
-        <a href={"https://lesentreprises-sengagent.gouv.fr/"} target={"_blank"}>
+        <a
+          href={"https://lesentreprises-sengagent.gouv.fr/"}
+          target={"_blank"}
+          rel="noreferrer"
+        >
           « Les entreprises s'engagent »
         </a>
         .

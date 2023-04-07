@@ -120,9 +120,9 @@ export const EmailPreviewTab = () => {
             <h6 className={fr.cx("fr-mt-4w")}>Pièces jointes</h6>
             {fakeContent.attachment ? (
               <ul>
-                {fakeContent.attachment.map((att) => (
-                  <li>
-                    <a target={"_blank"} href={att.url}>
+                {fakeContent.attachment.map((att, index) => (
+                  <li key={`${att.url}-${index}`}>
+                    <a target={"_blank"} href={att.url} rel="noreferrer">
                       {att.url}
                     </a>
                   </li>

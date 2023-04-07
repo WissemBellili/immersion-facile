@@ -190,6 +190,7 @@ const AdvisesForContact = ({
             className={fr.cx("fr-btn", "fr-btn--secondary")}
             href={data?.website}
             target="_blank"
+            rel="noreferrer"
           >
             Aller sur le site de l'entreprise
           </a>
@@ -200,6 +201,7 @@ const AdvisesForContact = ({
           className={fr.cx("fr-btn", "fr-btn--secondary")}
           href={getMapsLink(data)}
           target="_blank"
+          rel="noreferrer"
         >
           Localiser l'entreprise et trouver son contact
         </a>

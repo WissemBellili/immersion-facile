@@ -25,6 +25,7 @@ const renderSiret = (siret: string) => (
     href={`https://annuaire-entreprises.data.gouv.fr/etablissement/${siret}`}
     title={"Voir sur l'annuaire des entreprises"}
     target="_blank"
+    rel="noreferrer"
   >
     {siret}
   </a>

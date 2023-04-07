@@ -70,8 +70,12 @@ export const ConventionDocumentPage = ({
   } = convention.signatories;
   const { internshipKind } = convention;
   const logos = [
-    <img src={logoRf} alt="Logo RF" />,
-    <img src={agencyInfo?.logoUrl ? agencyInfo.logoUrl : logoIf} alt="" />,
+    <img key="logo-rf" src={logoRf} alt="Logo RF" />,
+    <img
+      key="logo-agency"
+      src={agencyInfo?.logoUrl ? agencyInfo.logoUrl : logoIf}
+      alt=""
+    />,
   ];
 
   return (
@@ -183,6 +187,7 @@ export const ConventionDocumentPage = ({
             <a
               href={`https://annuaire-entreprises.data.gouv.fr/etablissement/${convention.siret}`}
               target="_blank"
+              rel="noreferrer"
             >
               {convention.siret}
             </a>

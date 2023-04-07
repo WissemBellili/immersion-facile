@@ -11,6 +11,7 @@ const TitleButton = ({ url }: { url: AbsoluteUrl }) => (
     href={url}
     target="_blank"
     className={fr.cx("fr-btn", "fr-btn--tertiary", "fr-btn--sm", "fr-ml-auto")}
+    rel="noreferrer"
   >
     Ouvrir en plein écran
   </a>

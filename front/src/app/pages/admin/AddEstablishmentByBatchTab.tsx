@@ -122,8 +122,8 @@ export const AddEstablishmentByBatchTab = () => {
                 d'établissements
               </span>
               <ul>
-                {addBatchResponse.failures.map((failure) => (
-                  <li>
+                {addBatchResponse.failures.map((failure, index) => (
+                  <li key={`${failure.siret}-${index}`}>
                     <strong>{failure.siret}</strong> : {failure.errorMessage}
                   </li>
                 ))}

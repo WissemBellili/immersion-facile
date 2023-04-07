@@ -89,13 +89,16 @@ export const PlaceAutocomplete = ({
           }
         }}
         filterOptions={(option) => option}
-        renderInput={AutocompleteInput(
-          headerClassName,
-          label,
-          styles,
-          disabled,
-          placeholder,
-          id,
+        renderInput={(params) => (
+          <AutocompleteInput
+            headerClassName={headerClassName}
+            label={label}
+            inputStyle={styles}
+            disabled={disabled}
+            placeholder={placeholder}
+            id={id}
+            params={params}
+          />
         )}
       />
       {description && (

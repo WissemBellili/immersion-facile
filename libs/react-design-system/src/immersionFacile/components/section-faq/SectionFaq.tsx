@@ -76,6 +76,7 @@ const FaqCard = ({ title, description, url, index }: FaqCardProps) => (
               href={url}
               target="_blank"
               id={`im-section-faq__card-${index ? index + 1 : ""}`}
+              rel="noreferrer"
             >
               {title}
             </a>

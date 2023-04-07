@@ -22,13 +22,13 @@ const componentStory: ComponentStory<typeof Component> = (args) => (
 export const Default = componentStory.bind({});
 Default.args = {
   children: [
-    <ModalTitle>
+    <ModalTitle key="modal-title">
       <span>Exemple de titre</span>
     </ModalTitle>,
-    <ModalContent>
+    <ModalContent key="modal-content">
       <div>Exemple de contenu</div>
     </ModalContent>,
-    <ModalFooter>
+    <ModalFooter key="modal-footer">
       <span>Exemple de footer</span>
     </ModalFooter>,
   ],

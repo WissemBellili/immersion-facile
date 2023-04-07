@@ -45,6 +45,7 @@ export const OverFooterCol = ({
                 <a
                   href={link.url}
                   target="_blank"
+                  rel="noreferrer"
                   className={fr.cx(
                     "fr-link",
                     "fr-icon-arrow-right-line",

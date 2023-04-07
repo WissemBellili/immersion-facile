@@ -58,6 +58,7 @@ export const InitiateConventionCard = ({
                 className={fr.cx("fr-text--sm", "fr-mt-1v")}
                 href="https://candidat.pole-emploi.fr/compte/identifiant/saisieinformations"
                 target="_blank"
+                rel="noreferrer"
               >
                 Je ne connais pas mes identifiants
               </a>

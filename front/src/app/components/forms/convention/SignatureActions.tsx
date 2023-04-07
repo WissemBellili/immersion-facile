@@ -121,6 +121,7 @@ export const SignatureActions = ({
                 ? "https://docs.google.com/document/d/1siwGSE4fQB5hGWoppXLMoUYX42r9N-mGZbM_Gz_iS7c/edit?usp=sharing"
                 : "https://immersion.cellar-c2.services.clever-cloud.com/annexe_mini_stage_CCI.pdf"
             }
+            rel="noreferrer"
           >
             Avant de répondre, consultez ces dispositions ici
           </a>

@@ -81,13 +81,16 @@ export const AddressAutocomplete = ({
         onChange={onAutocompleteChange(setSelectedOption, setFormValue)}
         onInputChange={onAutocompleteInput(setSearchTerm)}
         filterOptions={(option) => option} // https://mui.com/material-ui/react-autocomplete/#search-as-you-type
-        renderInput={AutocompleteInput(
-          headerClassName,
-          label,
-          inputStyle,
-          disabled,
-          placeholder,
-          id,
+        renderInput={(params) => (
+          <AutocompleteInput
+            headerClassName={headerClassName}
+            label={label}
+            inputStyle={inputStyle}
+            disabled={disabled}
+            placeholder={placeholder}
+            id={id}
+            params={params}
+          />
         )}
       />
       {notice && (

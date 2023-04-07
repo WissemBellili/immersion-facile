@@ -165,7 +165,7 @@ const EmailsValuesSummary = ({
             className={fr.cx("fr-tag", "fr-tag--dismiss")}
             onClick={() => onDelete(value)}
             key={value}
-            arial-label={`Supprimer l'adresse email ${value}`}
+            aria-label={`Supprimer l'adresse email ${value}`}
           >
             {value}
           </button>
