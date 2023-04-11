@@ -10,6 +10,7 @@ import {
 } from "react-design-system";
 import { useFeatureFlags } from "src/app/hooks/useFeatureFlags";
 import { routes } from "src/app/routes/routes";
+import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 import {
   heroHeaderContent,
   heroHeaderNavCards,
@@ -41,6 +42,7 @@ export const HomePage = ({ type }: HomePageProps) => {
     heroHeaderContent[type];
   const sectionStatsDataForType = sectionStatsData[type];
   const sectionFaqDataForType = sectionFaqData[type];
+  const darkModeState = useIsDark();
   return (
     <HeaderFooterLayout>
       <MainWrapper layout="fullscreen" vSpacing={0} useBackground>
@@ -51,7 +53,7 @@ export const HomePage = ({ type }: HomePageProps) => {
           type={type}
           typeDisplayName={displayName}
           icon={icon}
-          patterns
+          patterns={darkModeState.isDark ? false : true}
           navCards={heroHeaderNavCardsWithDispatch[type] as HeroHeaderNavCard[]}
           parallax
           siretModal={
