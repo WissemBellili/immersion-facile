@@ -18,12 +18,16 @@ module.exports = {
         // Our own packages
         [
           "shared",
-          "react-design-system",
-          "html-templates",
-          "http-client",
-          "front",
-          "back",
         ],
+        // "react-design-system",
+        // "html-templates",
+        // "http-client",
+        // "front",
+        // "back",
+        [ "react-design-system"],
+        ["html-templates"],
+        ["http-client"],
+        ["^src/"],
         // Side effect imports.
         ["^\\u0000"],
         // Parent imports. Put `..` last.
