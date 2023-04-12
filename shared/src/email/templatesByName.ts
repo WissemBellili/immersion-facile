@@ -796,7 +796,7 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       businessName,
       message,
     }) => ({
-      subject: `Immersion Facilitée - Un candidat vous contacte pour une demande d'immersion pour le métier de ${appellationLabel}`,
+      subject: `${potentialBeneficiaryFirstName} ${potentialBeneficiaryLastName} vous contacte pour une demande d'immersion pour le métier de ${appellationLabel}`,
       greetings: `Bonjour ${contactFirstName} ${contactLastName},`,
       content: `
       ${potentialBeneficiaryFirstName} ${potentialBeneficiaryLastName} cherche à vous contacter pour une demande d'immersion. 
