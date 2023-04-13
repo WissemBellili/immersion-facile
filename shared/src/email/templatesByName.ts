@@ -809,13 +809,10 @@ export const templatesByName = createTemplatesByName<EmailParamsByEmailType>({
       L'immersion souhaitée porte sur le métier de ${appellationLabel} dans votre entreprise ${businessName}.
 
       <strong>Sa candidature vous intéresse ? Voici les étapes à suivre :</strong>
-      - Préparez votre échange grâce à notre <a href="https://aide.immersion-facile.beta.gouv.fr/fr/article/etudier-une-demande-dimmersion-professionnelle-1ehkehm/">page d'aide</a> et à nos bons conseils (en pièce jointe).
+      - Préparez votre échange grâce à notre <a href="https://aide.immersion-facile.beta.gouv.fr/fr/article/etudier-une-demande-dimmersion-professionnelle-1ehkehm/">page d'aide</a>.
       - Prenez contact avec le candidat : <a href="mailto:${potentialBeneficiaryEmail}?subject=Suite à votre demande d'immersion chez ${businessName}">${potentialBeneficiaryEmail}</a>
       `,
       subContent: defaultSignature("immersion"),
-      attachmentUrls: [
-        "https://immersion.cellar-c2.services.clever-cloud.com/les_bons_conseils_entreprise.pdf",
-      ],
     }),
   },
   CONTACT_BY_PHONE_INSTRUCTIONS: {
