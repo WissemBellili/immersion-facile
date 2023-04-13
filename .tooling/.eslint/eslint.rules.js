@@ -16,15 +16,8 @@ module.exports = {
         // Internal packages.
         ["^(@|components)(/.*|$)"],
         // Our own packages
-        [
-          "shared",
-        ],
-        // "react-design-system",
-        // "html-templates",
-        // "http-client",
-        // "front",
-        // "back",
-        [ "react-design-system"],
+        ["shared"],
+        ["react-design-system"],
         ["html-templates"],
         ["http-client"],
         ["^src/"],
