@@ -4,6 +4,19 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { GenericOption, Select } from "@codegouvfr/react-dsfr/Select";
 import { keys } from "ramda";
+import { useStyles } from "tss-react/dsfr";
+import { Route } from "type-route";
+
+import { domElementIds, GeoPositionDto, SearchSortedBy } from "shared";
+
+import {
+  Loader,
+  MainWrapper,
+  PageHeader,
+  SectionAccordion,
+  SectionTextEmbed,
+} from "react-design-system";
+
 import { AppellationAutocomplete } from "src/app/components/forms/autocomplete/AppellationAutocomplete";
 import { PlaceAutocomplete } from "src/app/components/forms/autocomplete/PlaceAutocomplete";
 import { HeaderFooterLayout } from "src/app/components/layout/HeaderFooterLayout";
@@ -16,17 +29,6 @@ import {
   SearchPageParams,
   SearchStatus,
 } from "src/core-logic/domain/search/search.slice";
-import { useStyles } from "tss-react/dsfr";
-import { Route } from "type-route";
-
-import { domElementIds, GeoPositionDto, SearchSortedBy } from "shared";
-import {
-  Loader,
-  MainWrapper,
-  PageHeader,
-  SectionAccordion,
-  SectionTextEmbed,
-} from "react-design-system";
 
 import Styles from "./SearchPage.styles";
 

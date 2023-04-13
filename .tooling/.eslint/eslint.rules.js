@@ -7,6 +7,7 @@ module.exports = {
   "react/no-unescaped-entities": "off",
   "import/no-unresolved": "off",
   "import/named": "off",
+  "react/no-array-index-key": "warn",
   "simple-import-sort/imports": [
     "error",
     {
