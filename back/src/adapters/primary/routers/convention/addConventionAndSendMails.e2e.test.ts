@@ -1,5 +1,6 @@
 import supertest from "supertest";
 import {
+  AgencyDtoBuilder,
   ConventionDto,
   ConventionDtoBuilder,
   conventionsRoute,
@@ -78,22 +79,21 @@ describe("Add Convention Notifications, then checks the mails are sent (trigerre
 
   // eslint-disable-next-line jest/expect-expect
   it("Scenario: application submitted, then signed, then validated", async () => {
+    const appAndDeps = await buildTestApp();
+    const peAgency = new AgencyDtoBuilder()
+      .withKind("pole-emploi")
+      .withValidatorEmails(["validator@mail.com"])
+      .build();
+
     const initialConvention = new ConventionDtoBuilder()
+      .withAgencyId(peAgency.id)
       .notSigned()
       .withStatus("READY_TO_SIGN")
       .withoutDateValidation()
       .withFederatedIdentity({ provider: "peConnect", token: "fake" })
       .build();
-    const appAndDeps = await buildTestApp();
-    const [agency] = await appAndDeps.inMemoryUow.agencyRepository.getByIds([
-      initialConvention.agencyId,
-    ]);
 
-    if (!agency) throw new Error("Test agency not found with this id");
-
-    appAndDeps.inMemoryUow.agencyRepository.setAgencies([
-      { ...agency, validatorEmails: ["validator@mail.com"] },
-    ]);
+    appAndDeps.inMemoryUow.agencyRepository.setAgencies([peAgency]);
 
     const { beneficiarySignJwt, establishmentSignJwt } =
       await beneficiarySubmitsApplicationForTheFirstTime(
